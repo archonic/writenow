@@ -23,8 +23,7 @@ module EditorHelper
     }
   }
 
-
-  def toolbar_button(key)
+  def toggle_button(key)
     render Editor::Button.new(data_action: TOGGLE_BUTTON_LOOKUP[key].try(:first)) do
       tag.i(class: TOGGLE_BUTTON_LOOKUP[key].try(:last))
     end
