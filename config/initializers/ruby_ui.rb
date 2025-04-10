@@ -4,6 +4,10 @@ module RubyUI
   extend Phlex::Kit
 end
 
+module Editor
+  extend Phlex::Kit
+end
+
 # Allow using RubyUI instead RubyUi
 Rails.autoloaders.main.inflector.inflect(
   "ruby_ui" => "RubyUI"
@@ -16,3 +20,11 @@ Rails.autoloaders.main.push_dir(
 
 # Allow using RubyUI::ComponentName instead RubyUI::ComponentName::ComponentName
 Rails.autoloaders.main.collapse(Rails.root.join("app/components/ruby_ui/*"))
+
+# Adding our own Editor phlex components
+Rails.autoloaders.main.push_dir(
+  Rails.root.join("app/components/editor"), namespace: Editor
+)
+
+# Allow using Editor::ComponentName instead Editor::ComponentName::ComponentName
+Rails.autoloaders.main.collapse(Rails.root.join("app/components/editor/*"))
