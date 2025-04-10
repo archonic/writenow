@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import "rhino-editor"
+import "rhino-editor/exports/styles/trix.css"
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

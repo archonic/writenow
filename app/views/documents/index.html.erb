@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Documents" %>
+
+<h1 class="text-2xl">Documents</h1>
+
+<div id="documents">
+  <% if @documents.any? %>
+    <% @documents.each do |document| %>
+      <%= render document %>
+      <p>
+        <%= link_to "Show this document", document %>
+      </p>
+    <% end %>
+  <% else %>
+    No documents yet
+  <% end %>
+</div>
+
+<%= render RubyUI::Link.new(href: new_document_path, variant: :primary) { "New document" } %>

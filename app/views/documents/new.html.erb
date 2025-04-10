@@ -1,0 +1,11 @@
+<% content_for :title, "New document" %>
+
+<h1 class="text-2xl">New document</h1>
+
+<%= render "form", document: @document %>
+
+<br>
+
+<div>
+  <%= link_to "Back to documents", documents_path %>
+</div>
