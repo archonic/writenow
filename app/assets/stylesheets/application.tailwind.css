@@ -1,6 +1,4 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
+@plugin "tw-animate-css"; /* not sure about this */
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
@@ -148,4 +146,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.tiptap.ProseMirror {
+  @apply h-full p-5 border-1 border-gray-300 border-t-0 rounded-b-md;
 }
