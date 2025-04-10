@@ -1,4 +1,6 @@
-@plugin "tw-animate-css"; /* not sure about this */
+@import "tailwindcss";
+@import "tw-animate-css";
+
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
@@ -148,6 +150,12 @@
   }
 }
 
+/* Editor styles */
 .tiptap.ProseMirror {
   @apply h-full p-5 border-1 border-gray-300 border-t-0 rounded-b-md;
+}
+
+/* App styles */
+a {
+  @apply underline text-blue-600 dark:text-sky-400;
 }
