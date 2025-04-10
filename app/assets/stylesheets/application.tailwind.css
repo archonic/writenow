@@ -1,11 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
-
-
-@import "tw-animate-css";
-
 
 @custom-variant dark (&:is(.dark *));
 
@@ -151,4 +148,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.tiptap.trix-content {
+  @apply min-h-[600px] p-5 border-1 border-gray-300 border-t-0 rounded-b-md;
 }

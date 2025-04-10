@@ -1,11 +1,6 @@
 <% content_for :title, "New document" %>
 
-<h1 class="text-2xl">New document</h1>
-
+<%# writing anything here will cause a scrollbar
+  # nested h-fulls will push page by height of that content. %>
 <%= render "form", document: @document %>
 
-<br>
-
-<div>
-  <%= link_to "Back to documents", documents_path %>
-</div>

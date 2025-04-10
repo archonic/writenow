@@ -1,4 +1,4 @@
-<%= form_with(model: document, class: "flex flex-col gap-5") do |form| %>
+<%= form_with(model: document, class: "flex flex-col gap-5 h-full") do |form| %>
   <% if document.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
@@ -13,20 +13,27 @@
 
   <div>
     <%= form.label :name, "Name" %>
-    <%= form.text_field :name, class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+    <%= form.text_field :name,
+      placeholder: "Name",
+      class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
   </div>
 
   <div>
     <%= form.label :description, "Description" %>
-    <%= form.text_field :description, class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+    <%= form.text_field :description,
+      placeholder: "Description",
+      class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
   </div>
 
-  <div>
-    <%= form.label :body, "Body" %>
-    <%= form.textarea :body %>
+  <div class="h-full">
+    <%= form.hidden_field :body, id: form.field_id(:body), value: form.object.body.try(:to_trix_html) || form.object.body %>
+    <rhino-editor
+      class="h-full"
+      input="<%= form.field_id(:body) %>"
+      data-blob-url-template="<%= rails_service_blob_url(":signed_id", ":filename") %>"
+      data-direct-upload-url="<%= rails_direct_uploads_url %>">
+    </rhino-editor>
   </div>
-
-  <rhino-editor></rhino-editor>
 
   <div>
     <%= form.submit %>
