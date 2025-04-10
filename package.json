@@ -12,7 +12,6 @@
     "@tailwindcss/cli": "^4.1.3",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
-    "rhino-editor": "^0.16.6",
     "trix": "^2.1.13",
     "tw-animate-css": "^1.2.5",
     "yarn": "^1.22.22"

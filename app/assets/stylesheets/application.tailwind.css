@@ -149,7 +149,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.tiptap.trix-content {
-  @apply min-h-[600px] p-5 border-1 border-gray-300 border-t-0 rounded-b-md;
-}
