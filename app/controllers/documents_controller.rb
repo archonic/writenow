@@ -65,6 +65,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.fetch(:document, {})
+      params.expect(document: [ :name, :description, :body ])
     end
 end

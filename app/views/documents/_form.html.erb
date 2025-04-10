@@ -25,9 +25,29 @@
       class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
   </div>
 
-  <div class="h-full">
+  <div class="h-full flex flex-col" data-controller="editor">
     <%= form.hidden_field :body, id: form.field_id(:body), value: form.object.body.try(:to_trix_html) || form.object.body %>
-    <%# rhino %>
+    <div class="hidden" data-editor-target="initialContent">
+      <%= form.object.body.try(:to_trix_html) || form.object.body %>
+    </div>
+
+    <div id="toolbar" class="flex flex-row gap-1 border-1 border-gray-300 rounded-t-md p-1">
+      <%= toggle_button(:heading) %>
+      <%= toggle_button(:bold) %>
+      <%= toggle_button(:italic) %>
+      <%= toggle_button(:strike) %>
+      <%= set_unset_button(:link) %>
+      <%= toggle_button(:blockquote) %>
+      <%= toggle_button(:codeblock) %>
+      <%= toggle_button(:ul) %>
+      <%= toggle_button(:ol) %>
+      <%= toggle_button(:outdent) %>
+      <%= toggle_button(:indent) %>
+      <%= toggle_button(:attach) %>
+      <%= toggle_button(:undo) %>
+      <%= toggle_button(:redo) %>
+    </div>
+    <div class="element h-full"></div>
   </div>
 
   <div>
