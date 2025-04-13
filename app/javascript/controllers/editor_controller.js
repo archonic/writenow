@@ -3,12 +3,13 @@ import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
 
+// NOTE This controller expects to be on the form element
 export default class extends Controller {
-  static targets = ["button", "initialContent"]
+  static targets = ["button", "initialContent", "tiptap", "bodyInput"]
 
   connect() {
     this.editor = new Editor({
-      element: document.querySelector('.element'),
+      element: this.tiptapTarget,
       extensions: [
         StarterKit,
         Link.configure({
@@ -20,8 +21,25 @@ export default class extends Controller {
       editable: true,
       injectCSS: false,
       content: this.initialContentTarget.innerHTML,
+      onTransaction({ editor }) {
+        editor.controller.checkActive()
+      }
     })
-    this.element.editor = this.editor
+    this.editor.controller = this
+  }
+
+  disconnect() {
+    this.editor.destroy()
+  }
+
+  checkActive() {
+    console.log("Check Active, yo")
+  }
+
+  submit() {
+    let contents = this.tiptapTarget.querySelector(".tiptap.ProseMirror").innerHTML
+    this.bodyInputTarget.value = contents
+    this.element.submit()
   }
 
   // Could potentially pass a data attribute to exec? If we whitelist?

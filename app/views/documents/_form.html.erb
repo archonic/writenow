@@ -1,4 +1,9 @@
-<%= form_with(model: document, class: "flex flex-col gap-5 h-full") do |form| %>
+<%= form_with(
+  model: document,
+  html: {
+    "data-controller": "editor",
+    class: "flex flex-col gap-5 h-full"
+  }) do |form| %>
   <% if document.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
@@ -25,10 +30,10 @@
       class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
   </div>
 
-  <div class="h-full flex flex-col" data-controller="editor">
-    <%= form.hidden_field :body, id: form.field_id(:body), value: form.object.body.try(:to_trix_html) || form.object.body %>
+  <div class="h-full flex flex-col">
+    <%= form.hidden_field :body, id: form.field_id(:body), "data-editor-target": "bodyInput" %>
     <div class="hidden" data-editor-target="initialContent">
-      <%= form.object.body.try(:to_trix_html) || form.object.body %>
+      <%= form.object.body.try(:to_trix_html).try(:html_safe) %>
     </div>
 
     <div id="toolbar" class="flex flex-row gap-1 border-1 border-gray-300 rounded-t-md p-1">
@@ -47,10 +52,12 @@
       <%= toggle_button(:undo) %>
       <%= toggle_button(:redo) %>
     </div>
-    <div class="element h-full"></div>
+    <div class="h-full" data-editor-target="tiptap"></div>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= render RubyUI::Button.new(type: "button", variant: "primary", data_action: "editor#submit") do
+      form.object.persisted? ? "Update document" : "Create document"
+    end %>
   </div>
 <% end %>
