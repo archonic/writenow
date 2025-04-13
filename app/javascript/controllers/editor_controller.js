@@ -33,26 +33,23 @@ export default class extends Controller {
   }
 
   checkActive() {
-    console.log("Check Active, yo")
+    for (const button of this.buttonTargets) {
+      if (this.editor.isActive(button.dataset.active)) {
+        button.classList.add("bg-sky-300")
+      } else {
+        button.classList.remove("bg-sky-300")
+      }
+    }
+  }
+
+  runCommand(event) {
+    let command = event.currentTarget.dataset.command
+    this.editor.chain().focus()[command]().run()
   }
 
   submit() {
-    let contents = this.tiptapTarget.querySelector(".tiptap.ProseMirror").innerHTML
-    this.bodyInputTarget.value = contents
+    this.bodyInputTarget.value = this.editor.getHTML()
     this.element.submit()
-  }
-
-  // Could potentially pass a data attribute to exec? If we whitelist?
-  bold() {
-    this.editor.chain().focus().toggleBold().run()
-  }
-
-  italic() {
-    this.editor.chain().focus().toggleItalic().run()
-  }
-
-  strike() {
-    this.editor.chain().focus().toggleStrike().run()
   }
 
   setLink() {
@@ -61,9 +58,7 @@ export default class extends Controller {
     const url = window.prompt('URL', previousUrl)
 
     // cancelled
-    if (url === null) {
-      return
-    }
+    if (url === null) { return }
 
     // empty
     if (url === '') {
@@ -87,7 +82,6 @@ export default class extends Controller {
   }
 
   unsetLink() {
-    console.log("unsetLink")
     this.editor.chain().focus().unsetLink().run()
   }
 }

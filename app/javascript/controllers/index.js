@@ -6,6 +6,3 @@ import { application } from "./application"
 
 import EditorController from "./editor_controller"
 application.register("editor", EditorController)
-
-import EditorButtonController from "./editor_button_controller"
-application.register("editor-button", EditorButtonController)
