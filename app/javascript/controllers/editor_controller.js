@@ -42,10 +42,19 @@ export default class extends Controller {
 
   setActiveState(button) {
     if (button.dataset.active !== undefined) {
-      if (this.editor.isActive(button.dataset.active)) {
-        button.classList.add("bg-sky-300")
+      if (button.dataset.level === undefined) {
+        if (this.editor.isActive(button.dataset.active)) {
+          button.classList.add("bg-sky-300")
+        } else {
+          button.classList.remove("bg-sky-300")
+        }
       } else {
-        button.classList.remove("bg-sky-300")
+        let level = parseInt(button.dataset.level)
+        if (this.editor.isActive('heading', { level: level })) {
+          button.classList.add("bg-sky-300")
+        } else {
+          button.classList.remove("bg-sky-300")
+        }
       }
     }
   }
@@ -80,7 +89,6 @@ export default class extends Controller {
 
   runCommand(event) {
     let command = event.currentTarget.dataset.command
-    console.log("Running command: " + command)
     this.editor.chain().focus()[command]().run()
   }
 
@@ -116,6 +124,11 @@ export default class extends Controller {
       .extendMarkRange('link')
       .setLink({ href: url })
       .run()
+  }
+
+  toggleHeading(event) {
+    let level = parseInt(event.currentTarget.dataset.level)
+    this.editor.chain().focus().toggleHeading({ level: level }).run()
   }
 
   unsetLink() {

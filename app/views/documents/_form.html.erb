@@ -37,7 +37,44 @@
     </div>
 
     <div id="toolbar" class="flex gap-1 border-1 border-gray-300 rounded-t-md p-1">
-      <%= render Editor::Button.new(:heading) { tag.i(class: "ri-heading") } %>
+      <%= render RubyUI::DropdownMenu.new(options: { placement: 'bottom-start' }) do %>
+        <%= render RubyUI::DropdownMenuTrigger.new do
+          render Editor::Button.new(class: "w-14") do
+            tag.i(class: "ri-heading pr-2") +
+            tag.i(class: "ri-arrow-down-s-line")
+          end
+        end %>
+        <%= render RubyUI::DropdownMenuContent.new do %>
+          <%= render RubyUI::DropdownMenuLabel.new { "Hierarchy" } %>
+          <%= render Editor::DropdownMenuItem.new(:paragraph) do
+                tag.i(class: "ri-paragraph pr-2") +
+                tag.div { "Paragraph" }
+              end %>
+          <%= render RubyUI::DropdownMenuSeparator.new %>
+          <%= render Editor::DropdownMenuItem.new(:heading_1) do
+                tag.i(class: "ri-h-1 pr-2") +
+                tag.div { "Heading 1" }
+              end %>
+          <%= render Editor::DropdownMenuItem.new(:heading_2) do
+                tag.i(class: "ri-h-2 pr-2") +
+                tag.div { "Heading 2" }
+              end %>
+          <%= render Editor::DropdownMenuItem.new(:heading_3) do
+                tag.i(class: "ri-h-3 pr-2") +
+                tag.div { "Heading 3" }
+              end %>
+          <%= render Editor::DropdownMenuItem.new(:heading_4) do
+                tag.i(class: "ri-h-4 pr-2") +
+                tag.div { "Heading 4" }
+              end %>
+          <%= render RubyUI::DropdownMenuLabel.new { "Lists" } %>
+          <%= render RubyUI::DropdownMenuSeparator.new %>
+          <%= render Editor::DropdownMenuItem.new(:heading_4) do
+                tag.i(class: "ri-h-4 pr-2") +
+                tag.div { "Heading 4" }
+              end %>
+        <% end %>
+      <% end %>
       <%= render Editor::Button.new(:bold) { tag.i(class: "ri-bold") } %>
       <%= render Editor::Button.new(:italic) { tag.i(class: "ri-italic") } %>
       <%= render Editor::Button.new(:strike) { tag.i(class: "ri-strikethrough") }%>

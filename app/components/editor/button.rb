@@ -7,14 +7,17 @@ module Editor
     font-medium transition-colors
     focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
     disabled:pointer-events-none disabled:opacity-50
-    bg-secondary text-secondary-foreground
-    hover:bg-opacity-80
+    bg-gray-300 text-gray-800
+    hover:bg-gray-200
     h-8 w-8
     cursor-pointer"
 
-    def initialize(key, **attrs)
-      @key = key.to_sym
-      attrs.merge!(data: data_attrs)
+    def initialize(key = nil, **attrs)
+      if key
+        @key = key.to_sym
+        attrs.merge!(data: data_attrs)
+      end
+
       super(**attrs)
     end
 
@@ -34,12 +37,6 @@ module Editor
 
     def data_attrs
       case @key
-      when :heading
-        {
-          action: "editor#runCommand",
-          command: "toggleHeading",
-          active: "heading"
-        }
       when :bold
         {
           action: "editor#runCommand",
@@ -112,7 +109,7 @@ module Editor
           visible: "link"
         }
       else
-        raise StandardError.new("Key passed to Editor::Button is not recognized: #{key}")
+        raise ArgumentError.new("Key passed to Editor::Button is not recognized: #{key}")
       end
     end
   end
