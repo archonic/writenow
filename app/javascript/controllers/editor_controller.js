@@ -34,20 +34,46 @@ export default class extends Controller {
 
   updateButtonState() {
     for (const button of this.buttonTargets) {
-      // Set active class
+      this.setActiveState(button)
+      this.setDisabledState(button)
+      this.setVisibleState(button)
+    }
+  }
+
+  setActiveState(button) {
+    if (button.dataset.active !== undefined) {
       if (this.editor.isActive(button.dataset.active)) {
         button.classList.add("bg-sky-300")
       } else {
         button.classList.remove("bg-sky-300")
       }
+    }
+  }
 
-      // Set disabled state
-      if (button.dataset.disable !== undefined) {
-        if (this.editor.can()[button.dataset.disable]()) {
-          button.removeAttribute("disabled")
-        } else {
-          button.setAttribute("disabled", "disabled")
-        }
+  setDisabledState(button) {
+    if (button.dataset.disable !== undefined) {
+      if (this.editor.can()[button.dataset.disable]()) {
+        button.removeAttribute("disabled")
+      } else {
+        button.setAttribute("disabled", "disabled")
+      }
+    }
+  }
+
+  setVisibleState(button) {
+    if (button.dataset.visible !== undefined) {
+      if (this.editor.isActive(button.dataset.visible)) {
+        button.classList.remove("hidden")
+      } else {
+        button.classList.add("hidden")
+      }
+    }
+
+    if (button.dataset.hidden !== undefined) {
+      if (!this.editor.isActive(button.dataset.hidden)) {
+        button.classList.remove("hidden")
+      } else {
+        button.classList.add("hidden")
       }
     }
   }

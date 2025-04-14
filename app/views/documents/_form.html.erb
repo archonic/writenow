@@ -36,19 +36,20 @@
       <%= form.object.body.try(:to_trix_html).try(:html_safe) %>
     </div>
 
-    <div id="toolbar" class="flex flex-row gap-1 border-1 border-gray-300 rounded-t-md p-1">
-      <%= toggle_button(:heading) %>
-      <%= toggle_button(:bold) %>
-      <%= toggle_button(:italic) %>
-      <%= toggle_button(:strike) %>
-      <%= set_unset_button(:link) %>
-      <%= toggle_button(:blockquote) %>
-      <%= toggle_button(:codeblock) %>
-      <%= toggle_button(:ul) %>
-      <%= toggle_button(:ol) %>
-      <%= toggle_button(:attach) %>
-      <%= toggle_button(:undo) %>
-      <%= toggle_button(:redo) %>
+    <div id="toolbar" class="flex gap-1 border-1 border-gray-300 rounded-t-md p-1">
+      <%= render Editor::Button.new(:heading) { tag.i(class: "ri-heading") } %>
+      <%= render Editor::Button.new(:bold) { tag.i(class: "ri-bold") } %>
+      <%= render Editor::Button.new(:italic) { tag.i(class: "ri-italic") } %>
+      <%= render Editor::Button.new(:strike) { tag.i(class: "ri-strikethrough") }%>
+      <%= render Editor::Button.new(:link_set) { tag.i(class: "ri-link") } %>
+      <%= render Editor::Button.new(:link_unset) { tag.i(class: "ri-link-unlink-m") } %>
+      <%= render Editor::Button.new(:blockquote) { tag.i(class: "ri-quote-text") } %>
+      <%= render Editor::Button.new(:codeblock) { tag.i(class: "ri-code-box-line") } %>
+      <%= render Editor::Button.new(:ul) { tag.i(class: "ri-list-unordered") } %>
+      <%= render Editor::Button.new(:ol) { tag.i(class: "ri-list-ordered-2") } %>
+      <%= render Editor::Button.new(:attach) { tag.i(class: "ri-attachment-2") } %>
+      <%= render Editor::Button.new(:undo) { tag.i(class: "ri-arrow-go-back-line") } %>
+      <%= render Editor::Button.new(:redo) { tag.i(class: "ri-arrow-go-forward-line") } %>
     </div>
     <div class="h-full" data-editor-target="tiptap"></div>
   </div>
