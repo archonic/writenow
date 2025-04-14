@@ -44,6 +44,7 @@ export default class extends Controller {
 
   runCommand(event) {
     let command = event.currentTarget.dataset.command
+    console.log("Running command: " + command)
     this.editor.chain().focus()[command]().run()
   }
 

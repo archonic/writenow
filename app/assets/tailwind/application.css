@@ -152,7 +152,7 @@
 
 /* Editor styles */
 .tiptap.ProseMirror {
-  @apply h-full p-5 border-1 border-gray-300 border-t-0 rounded-b-md;
+  @apply h-full p-5 border-1 border-gray-300 border-t-0 rounded-b-md prose max-w-none;
 
   a {
     @apply underline text-blue-600 dark:text-sky-400;

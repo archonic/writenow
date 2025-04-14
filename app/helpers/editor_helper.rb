@@ -1,19 +1,17 @@
 module EditorHelper
   # key: ["command", "active key", "icon"]
   TOGGLE_BUTTON_LOOKUP = {
-    heading: [ "toggleHeading", "heading",  "ri-heading" ],
+    heading: [ "toggleHeading", "heading",  "ri-heading" ],     # do it
     bold: [  "toggleBold", "bold", "ri-bold" ],
     italic: [ "toggleItalic", "italic", "ri-italic" ],
     strike: [ "toggleStrike", "strike", "ri-strikethrough" ],
     blockquote: [ "toggleBlockquote", "blockquote", "ri-quote-text" ],
-    codeblock: [ "toggleCodeblock", "codeblock", "ri-code-box-line" ],
-    ul: [ "toggleUl", "ul", "ri-list-unordered" ],
-    ol: [ "toggleOl", "ol", "toggleOl", "ri-list-ordered-2" ],
-    outdent: [ "toggleOutdent", "outdent", "toggleOutdent", "ri-indent-decrease" ],
-    indent: [ "toggleIndent", "indent", "toggleIndent", "ri-indent-increase" ],
-    attach: [ "cmdattach", "attach", "cmdAttach", "ri-attachment-2" ],
-    undo: [ "cmdUndo", "undo", "cmdUndo", "ri-arrow-go-back-line" ],
-    redo: [ "cmdRedo", "redo", "cmdRedo", "ri-arrow-go-forward-line" ]
+    codeblock: [ "toggleCodeblock", "codeblock", "ri-code-box-line" ],  # install and use code block lowlight (syntax highlighting)
+    ul: [ "toggleBulletList", "bulletList", "ri-list-unordered" ],
+    ol: [ "toggleOrderedList", "orderedList", "ri-list-ordered-2" ],
+    attach: [ "cmdattach", "attach", "cmdAttach", "ri-attachment-2" ],              # do it
+    undo: [ "undo", "undo", "ri-arrow-go-back-line" ],
+    redo: [ "redo", "redo", "ri-arrow-go-forward-line" ]
   }.freeze
 
   SET_UNSET_BUTTON_LOOKUP = {
