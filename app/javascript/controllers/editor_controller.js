@@ -22,7 +22,7 @@ export default class extends Controller {
       injectCSS: false,
       content: this.initialContentTarget.innerHTML,
       onTransaction({ editor }) {
-        editor.controller.checkActive()
+        editor.controller.updateButtonState()
       }
     })
     this.editor.controller = this
@@ -32,12 +32,22 @@ export default class extends Controller {
     this.editor.destroy()
   }
 
-  checkActive() {
+  updateButtonState() {
     for (const button of this.buttonTargets) {
+      // Set active class
       if (this.editor.isActive(button.dataset.active)) {
         button.classList.add("bg-sky-300")
       } else {
         button.classList.remove("bg-sky-300")
+      }
+
+      // Set disabled state
+      if (button.dataset.disable !== undefined) {
+        if (this.editor.can()[button.dataset.disable]()) {
+          element.removeAttribute("disabled")
+        } else {
+          element.setAttribute("disabled", "disabled")
+        }
       }
     }
   }
