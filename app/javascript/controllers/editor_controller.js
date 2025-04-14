@@ -44,9 +44,9 @@ export default class extends Controller {
       // Set disabled state
       if (button.dataset.disable !== undefined) {
         if (this.editor.can()[button.dataset.disable]()) {
-          element.removeAttribute("disabled")
+          button.removeAttribute("disabled")
         } else {
-          element.setAttribute("disabled", "disabled")
+          button.setAttribute("disabled", "disabled")
         }
       }
     }
