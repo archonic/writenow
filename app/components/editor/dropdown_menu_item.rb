@@ -78,6 +78,18 @@ module Editor
           level: 6,
           active: "heading"
         }
+      when :ul
+        {
+          action: "ruby-ui--dropdown-menu#close editor#runCommand",
+          command: "toggleBulletList",
+          active: "bulletList"
+        }
+      when :ol
+        {
+          action: "ruby-ui--dropdown-menu#close editor#runCommand",
+          command: "toggleOrderedList",
+          active: "orderedList"
+        }
       else
         raise ArgumentError.new("Key passed to Editor::Button is not recognized: #{key}")
       end

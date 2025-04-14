@@ -67,18 +67,6 @@ module Editor
           command: "toggleCodeblock",
           active: "codeblock"
         }
-      when :ul
-        {
-          action: "editor#runCommand",
-          command: "toggleBulletList",
-          active: "bulletList"
-        }
-      when :ol
-        {
-          action: "editor#runCommand",
-          command: "toggleOrderedList",
-          active: "orderedList"
-        }
       when :attach
         {
           action: "cmdAttach",

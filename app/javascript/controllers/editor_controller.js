@@ -5,7 +5,7 @@ import Link from '@tiptap/extension-link'
 
 // NOTE This controller expects to be on the form element
 export default class extends Controller {
-  static targets = ["button", "initialContent", "tiptap", "bodyInput"]
+  static targets = ["button", "blockSelector", "initialContent", "tiptap", "bodyInput"]
 
   connect() {
     this.editor = new Editor({
@@ -38,6 +38,7 @@ export default class extends Controller {
       this.setDisabledState(button)
       this.setVisibleState(button)
     }
+    this.setSelection(this.blockSelectorTarget)
   }
 
   setActiveState(button) {
@@ -84,6 +85,30 @@ export default class extends Controller {
       } else {
         button.classList.add("hidden")
       }
+    }
+  }
+
+  setSelection(container) {
+    container.innerHTML = `<i class="${this.activeIcon()}"></i>`
+  }
+
+  activeIcon() {
+    if (this.editor.isActive("paragraph")) {
+      return "ri-paragraph"
+    } else if (this.editor.isActive("heading")) {
+      if (this.editor.isActive("heading", { level: 1 })) {
+        return "ri-h-1"
+      } else if (this.editor.isActive("heading", { level: 2 })) {
+        return "ri-h-2"
+      } else if (this.editor.isActive("heading", { level: 3 })) {
+        return "ri-h-3"
+      } else if (this.editor.isActive("heading", { level: 4 })) {
+        return "ri-h-4"
+      }
+    } else if (this.editor.isActive("bulletList")) {
+      return "ri-list-unordered"
+    } else if (this.editor.isActive("orderedList")) {
+      return "ri-list-ordered-2"
     }
   }
 

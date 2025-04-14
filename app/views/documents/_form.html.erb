@@ -39,8 +39,8 @@
     <div id="toolbar" class="flex gap-1 border-1 border-gray-300 rounded-t-md p-1">
       <%= render RubyUI::DropdownMenu.new(options: { placement: 'bottom-start' }) do %>
         <%= render RubyUI::DropdownMenuTrigger.new do
-          render Editor::Button.new(class: "w-14") do
-            tag.i(class: "ri-heading pr-2") +
+          render Editor::Button.new(class: "w-14 inline-flex") do
+            tag.div(class: "pr-2", "data-editor-target": "blockSelector") { tag.i(class: "ri-heading") } +
             tag.i(class: "ri-arrow-down-s-line")
           end
         end %>
@@ -69,9 +69,13 @@
               end %>
           <%= render RubyUI::DropdownMenuLabel.new { "Lists" } %>
           <%= render RubyUI::DropdownMenuSeparator.new %>
-          <%= render Editor::DropdownMenuItem.new(:heading_4) do
-                tag.i(class: "ri-h-4 pr-2") +
-                tag.div { "Heading 4" }
+          <%= render Editor::DropdownMenuItem.new(:ul) do
+                tag.i(class: "ri-list-unordered pr-2") +
+                tag.div { "Bullet list" }
+              end %>
+          <%= render Editor::DropdownMenuItem.new(:ol) do
+                tag.i(class: "ri-list-ordered-2 pr-2") +
+                tag.div { "Ordered list" }
               end %>
         <% end %>
       <% end %>
@@ -82,8 +86,6 @@
       <%= render Editor::Button.new(:link_unset) { tag.i(class: "ri-link-unlink-m") } %>
       <%= render Editor::Button.new(:blockquote) { tag.i(class: "ri-quote-text") } %>
       <%= render Editor::Button.new(:codeblock) { tag.i(class: "ri-code-box-line") } %>
-      <%= render Editor::Button.new(:ul) { tag.i(class: "ri-list-unordered") } %>
-      <%= render Editor::Button.new(:ol) { tag.i(class: "ri-list-ordered-2") } %>
       <%= render Editor::Button.new(:attach) { tag.i(class: "ri-attachment-2") } %>
       <%= render Editor::Button.new(:undo) { tag.i(class: "ri-arrow-go-back-line") } %>
       <%= render Editor::Button.new(:redo) { tag.i(class: "ri-arrow-go-forward-line") } %>
