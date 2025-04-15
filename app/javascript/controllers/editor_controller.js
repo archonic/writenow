@@ -69,19 +69,20 @@ export default class extends Controller {
   }
 
   setActiveState(button) {
+    const activeClass = "bg-sky-300"
     if (button.dataset.active !== undefined) {
       if (button.dataset.level === undefined) {
         if (this.editor.isActive(button.dataset.active)) {
-          button.classList.add("bg-sky-300")
+          button.classList.add(activeClass)
         } else {
-          button.classList.remove("bg-sky-300")
+          button.classList.remove(activeClass)
         }
       } else {
         let level = parseInt(button.dataset.level)
         if (this.editor.isActive('heading', { level: level })) {
-          button.classList.add("bg-sky-300")
+          button.classList.add(activeClass)
         } else {
-          button.classList.remove("bg-sky-300")
+          button.classList.remove(activeClass)
         }
       }
     }
