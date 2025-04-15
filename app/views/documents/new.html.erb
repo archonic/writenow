@@ -1,6 +1,5 @@
 <% content_for :title, "New document" %>
 
-<%# writing anything here will cause a scrollbar
-  # nested h-fulls will push page by height of that content. %>
-<%= render "form", document: @document %>
-
+<div class="max-w-5xl">
+  <%= render "form", document: @document %>
+</div>

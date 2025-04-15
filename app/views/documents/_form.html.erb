@@ -30,12 +30,17 @@
       class: "appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
   </div>
 
-  <div class="h-full flex flex-col">
+  <div>
+    <%= render RubyUI::Button.new(type: "button", variant: "primary", data_action: "editor#submit") do
+      form.object.persisted? ? "Update document" : "Create document"
+    end %>
+  </div>
+
+  <div class="flex flex-col">
     <%= form.hidden_field :body, id: form.field_id(:body), "data-editor-target": "bodyInput" %>
     <div class="hidden" data-editor-target="initialContent">
       <%= form.object.body.try(:to_trix_html).try(:html_safe) %>
     </div>
-
     <div id="toolbar" class="flex gap-1 border-1 border-gray-300 rounded-t-md p-1">
       <div class="grow flex gap-1">
         <%= render RubyUI::DropdownMenu.new(options: { placement: 'bottom-start' }) do %>
@@ -101,15 +106,7 @@
         <%= render Editor::Button.new(:undo) { tag.i(class: "ri-arrow-go-back-line") } %>
         <%= render Editor::Button.new(:redo) { tag.i(class: "ri-arrow-go-forward-line") } %>
       </div>
-
-
     </div>
-    <div class="h-full" data-editor-target="tiptap"></div>
-  </div>
-
-  <div>
-    <%= render RubyUI::Button.new(type: "button", variant: "primary", data_action: "editor#submit") do
-      form.object.persisted? ? "Update document" : "Create document"
-    end %>
+    <div class="" data-editor-target="tiptap"></div>
   </div>
 <% end %>
