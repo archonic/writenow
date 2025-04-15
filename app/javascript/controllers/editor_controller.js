@@ -1,20 +1,38 @@
 import { Controller } from "@hotwired/stimulus"
 import { Editor } from '@tiptap/core'
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
+
+// Code block with syntax highlighting
+import css from 'highlight.js/lib/languages/css'
+import js from 'highlight.js/lib/languages/javascript'
+import ts from 'highlight.js/lib/languages/typescript'
+import html from 'highlight.js/lib/languages/xml'
+import ruby from 'highlight.js/lib/languages/ruby'
+import python from 'highlight.js/lib/languages/python'
+import { all, createLowlight } from 'lowlight'
 
 // NOTE This controller expects to be on the form element
 export default class extends Controller {
   static targets = ["button", "blockSelector", "initialContent", "tiptap", "bodyInput"]
 
   connect() {
+    const lowlight = createLowlight(all)
+    this.registerLowlightLanguages(lowlight)
+
     this.editor = new Editor({
       element: this.tiptapTarget,
       extensions: [
-        StarterKit,
+        StarterKit.configure({
+          codeBlock: false
+        }),
         Link.configure({
           openOnClick: false,
           defaultProtocol: 'https',
+        }),
+        CodeBlockLowlight.configure({
+          lowlight,
         })
       ],
       autofocus: true,
@@ -26,6 +44,15 @@ export default class extends Controller {
       }
     })
     this.editor.controller = this
+  }
+
+  registerLowlightLanguages(lowlight) {
+    lowlight.register('html', html)
+    lowlight.register('css', css)
+    lowlight.register('js', js)
+    lowlight.register('ts', ts)
+    lowlight.register('ruby', ruby)
+    lowlight.register('python', python)
   }
 
   disconnect() {
