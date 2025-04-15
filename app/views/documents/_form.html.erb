@@ -37,58 +37,64 @@
     </div>
 
     <div id="toolbar" class="flex gap-1 border-1 border-gray-300 rounded-t-md p-1">
-      <%= render RubyUI::DropdownMenu.new(options: { placement: 'bottom-start' }) do %>
-        <%= render RubyUI::DropdownMenuTrigger.new do
-          render Editor::Button.new(class: "w-14 inline-flex") do
-            tag.div(class: "pr-2", "data-editor-target": "blockSelector") { tag.i(class: "ri-heading") } +
-            tag.i(class: "ri-arrow-down-s-line")
-          end
-        end %>
-        <%= render RubyUI::DropdownMenuContent.new do %>
-          <%= render RubyUI::DropdownMenuLabel.new { "Hierarchy" } %>
-          <%= render Editor::DropdownMenuItem.new(:paragraph) do
-                tag.i(class: "ri-paragraph pr-2") +
-                tag.div { "Paragraph" }
-              end %>
-          <%= render RubyUI::DropdownMenuSeparator.new %>
-          <%= render Editor::DropdownMenuItem.new(:heading_1) do
-                tag.i(class: "ri-h-1 pr-2") +
-                tag.div { "Heading 1" }
-              end %>
-          <%= render Editor::DropdownMenuItem.new(:heading_2) do
-                tag.i(class: "ri-h-2 pr-2") +
-                tag.div { "Heading 2" }
-              end %>
-          <%= render Editor::DropdownMenuItem.new(:heading_3) do
-                tag.i(class: "ri-h-3 pr-2") +
-                tag.div { "Heading 3" }
-              end %>
-          <%= render Editor::DropdownMenuItem.new(:heading_4) do
-                tag.i(class: "ri-h-4 pr-2") +
-                tag.div { "Heading 4" }
-              end %>
-          <%= render RubyUI::DropdownMenuLabel.new { "Lists" } %>
-          <%= render RubyUI::DropdownMenuSeparator.new %>
-          <%= render Editor::DropdownMenuItem.new(:ul) do
-                tag.i(class: "ri-list-unordered pr-2") +
-                tag.div { "Bullet list" }
-              end %>
-          <%= render Editor::DropdownMenuItem.new(:ol) do
-                tag.i(class: "ri-list-ordered-2 pr-2") +
-                tag.div { "Ordered list" }
-              end %>
+      <div class="grow flex gap-1">
+        <%= render RubyUI::DropdownMenu.new(options: { placement: 'bottom-start' }) do %>
+          <%= render RubyUI::DropdownMenuTrigger.new do
+            render Editor::Button.new(class: "w-14 inline-flex") do
+              tag.div(class: "pr-2", "data-editor-target": "blockSelector") { tag.i(class: "ri-heading") } +
+              tag.i(class: "ri-arrow-down-s-line")
+            end
+          end %>
+          <%= render RubyUI::DropdownMenuContent.new do %>
+            <%= render RubyUI::DropdownMenuLabel.new { "Hierarchy" } %>
+            <%= render Editor::DropdownMenuItem.new(:paragraph) do
+                  tag.i(class: "ri-paragraph pr-2") +
+                  tag.div { "Paragraph" }
+                end %>
+            <%= render RubyUI::DropdownMenuSeparator.new %>
+            <%= render Editor::DropdownMenuItem.new(:heading_1) do
+                  tag.i(class: "ri-h-1 pr-2") +
+                  tag.div { "Heading 1" }
+                end %>
+            <%= render Editor::DropdownMenuItem.new(:heading_2) do
+                  tag.i(class: "ri-h-2 pr-2") +
+                  tag.div { "Heading 2" }
+                end %>
+            <%= render Editor::DropdownMenuItem.new(:heading_3) do
+                  tag.i(class: "ri-h-3 pr-2") +
+                  tag.div { "Heading 3" }
+                end %>
+            <%= render Editor::DropdownMenuItem.new(:heading_4) do
+                  tag.i(class: "ri-h-4 pr-2") +
+                  tag.div { "Heading 4" }
+                end %>
+            <%= render RubyUI::DropdownMenuLabel.new { "Lists" } %>
+            <%= render RubyUI::DropdownMenuSeparator.new %>
+            <%= render Editor::DropdownMenuItem.new(:ul) do
+                  tag.i(class: "ri-list-unordered pr-2") +
+                  tag.div { "Bullet list" }
+                end %>
+            <%= render Editor::DropdownMenuItem.new(:ol) do
+                  tag.i(class: "ri-list-ordered-2 pr-2") +
+                  tag.div { "Ordered list" }
+                end %>
+          <% end %>
         <% end %>
-      <% end %>
-      <%= render Editor::Button.new(:bold) { tag.i(class: "ri-bold") } %>
-      <%= render Editor::Button.new(:italic) { tag.i(class: "ri-italic") } %>
-      <%= render Editor::Button.new(:strike) { tag.i(class: "ri-strikethrough") }%>
-      <%= render Editor::Button.new(:link_set) { tag.i(class: "ri-link") } %>
-      <%= render Editor::Button.new(:link_unset) { tag.i(class: "ri-link-unlink-m") } %>
-      <%= render Editor::Button.new(:blockquote) { tag.i(class: "ri-quote-text") } %>
-      <%= render Editor::Button.new(:codeblock) { tag.i(class: "ri-code-box-line") } %>
-      <%= render Editor::Button.new(:attach) { tag.i(class: "ri-attachment-2") } %>
-      <%= render Editor::Button.new(:undo) { tag.i(class: "ri-arrow-go-back-line") } %>
-      <%= render Editor::Button.new(:redo) { tag.i(class: "ri-arrow-go-forward-line") } %>
+        <%= render Editor::Button.new(:bold) { tag.i(class: "ri-bold") } %>
+        <%= render Editor::Button.new(:italic) { tag.i(class: "ri-italic") } %>
+        <%= render Editor::Button.new(:strike) { tag.i(class: "ri-strikethrough") }%>
+        <%= render Editor::Button.new(:link_set) { tag.i(class: "ri-link") } %>
+        <%= render Editor::Button.new(:link_unset) { tag.i(class: "ri-link-unlink-m") } %>
+        <%= render Editor::Button.new(:blockquote) { tag.i(class: "ri-quote-text") } %>
+        <%= render Editor::Button.new(:codeblock) { tag.i(class: "ri-code-box-line") } %>
+        <%= render Editor::Button.new(:attach) { tag.i(class: "ri-attachment-2") } %>
+      </div>
+      <div>
+        <%= render Editor::Button.new(:undo) { tag.i(class: "ri-arrow-go-back-line") } %>
+        <%= render Editor::Button.new(:redo) { tag.i(class: "ri-arrow-go-forward-line") } %>
+      </div>
+
+
     </div>
     <div class="h-full" data-editor-target="tiptap"></div>
   </div>
