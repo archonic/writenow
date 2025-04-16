@@ -13,6 +13,11 @@ import ruby from 'highlight.js/lib/languages/ruby'
 import python from 'highlight.js/lib/languages/python'
 import { all, createLowlight } from 'lowlight'
 
+// Collaborative editing
+import Collaboration from '@tiptap/extension-collaboration'
+import * as Y from 'yjs'
+import { TiptapCollabProvider } from '@hocuspocus/provider'
+
 // NOTE This controller expects to be on the form element
 export default class extends Controller {
   static targets = ["button", "blockSelector", "initialContent", "tiptap", "bodyInput"]
@@ -20,12 +25,15 @@ export default class extends Controller {
   connect() {
     const lowlight = createLowlight(all)
     this.registerLowlightLanguages(lowlight)
+    const doc = new Y.Doc()
+    this.connectToCollaboration(doc)
 
     this.editor = new Editor({
       element: this.tiptapTarget,
       extensions: [
         StarterKit.configure({
-          codeBlock: false
+          codeBlock: false,
+          history: false
         }),
         Link.configure({
           openOnClick: false,
@@ -33,7 +41,10 @@ export default class extends Controller {
         }),
         CodeBlockLowlight.configure({
           lowlight,
-        })
+        }),
+        Collaboration.configure({
+          document: doc, // Configure Y.Doc for collaboration
+        }),
       ],
       autofocus: true,
       editable: true,
@@ -44,6 +55,16 @@ export default class extends Controller {
       }
     })
     this.editor.controller = this
+  }
+
+  // Connect to your Collaboration server
+  connectToCollaboration(doc) {
+    const provider = new TiptapCollabProvider({
+      name: 'document.name',      // Unique document identifier for syncing. This is your document name.
+      baseUrl: 'http://127.0.0.1:1234',  // Your Cloud Dashboard AppID or `baseURL` for on-premises
+      token: 'notoken',           // Your JWT token
+      document: doc,
+    })
   }
 
   registerLowlightLanguages(lowlight) {

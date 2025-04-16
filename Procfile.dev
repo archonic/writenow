@@ -1,3 +1,4 @@
 web: rdbg -n --open=vscode -c -- bin/rails s
 js: yarn build --watch
 css: yarn build:css --watch
+hocuspocus: yarn hocuspocus:server
