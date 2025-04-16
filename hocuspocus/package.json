@@ -1,4 +1,5 @@
 {
+  "name": "hocuspocus",
   "version": "3.0.8-rc.0",
   "private": true,
   "type": "module",
