@@ -26,7 +26,6 @@ export default class extends Controller {
     const lowlight = createLowlight(all)
     this.registerLowlightLanguages(lowlight)
     const doc = new Y.Doc()
-    this.connectToCollaboration(doc)
 
     this.editor = new Editor({
       element: this.tiptapTarget,
@@ -43,27 +42,37 @@ export default class extends Controller {
           lowlight,
         }),
         Collaboration.configure({
-          document: doc, // Configure Y.Doc for collaboration
+          document: doc,
         }),
       ],
       autofocus: true,
       editable: true,
       injectCSS: false,
-      content: this.initialContentTarget.innerHTML,
+      // content: this.initialContentTarget.innerHTML,
       onTransaction({ editor }) {
         editor.controller.updateButtonState()
       }
     })
+    this.connectToCollaboration(doc, this.editor, this.initialContentTarget.innerHTML)
+
     this.editor.controller = this
   }
 
   // Connect to your Collaboration server
-  connectToCollaboration(doc) {
+  connectToCollaboration(doc, editor, initialContent) {
     const provider = new TiptapCollabProvider({
-      name: 'document.name',      // Unique document identifier for syncing. This is your document name.
-      baseUrl: 'http://127.0.0.1:1234',  // Your Cloud Dashboard AppID or `baseURL` for on-premises
-      token: 'notoken',           // Your JWT token
+      name: 'uniquedoc5',              // Unique document identifier for syncing. This is your document name.
+      baseUrl: 'http://127.0.0.1:1234',   // Your Cloud Dashboard AppID or `baseURL` for on-premises
+      token: 'notoken',                   // Your JWT token
       document: doc,
+      // The onSynced callback ensures initial content is set only once using editor.setContent()
+      // preventing repetitive content loading on editor syncs.
+      onSynced() {
+        if (!doc.getMap('config').get('initialContentLoaded') && editor) {
+          doc.getMap('config').set('initialContentLoaded', true)
+          editor.commands.setContent(initialContent)
+        }
+      },
     })
   }
 
