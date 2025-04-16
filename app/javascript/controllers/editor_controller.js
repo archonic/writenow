@@ -141,10 +141,10 @@ export default class extends Controller {
     container.innerHTML = `<i class="${this.activeIcon()}"></i>`
   }
 
+  // Potential for refactoring. Iterate over buttons with specific data attr?
+  // Lowest priority should be last. You can have a paragraph inside other blocks.
   activeIcon() {
-    if (this.editor.isActive("paragraph")) {
-      return "ri-paragraph"
-    } else if (this.editor.isActive("heading")) {
+    if (this.editor.isActive("heading")) {
       if (this.editor.isActive("heading", { level: 1 })) {
         return "ri-h-1"
       } else if (this.editor.isActive("heading", { level: 2 })) {
@@ -158,6 +158,12 @@ export default class extends Controller {
       return "ri-list-unordered"
     } else if (this.editor.isActive("orderedList")) {
       return "ri-list-ordered-2"
+    } else if (this.editor.isActive("blockquote")) {
+      return "ri-quote-text"
+    } else if (this.editor.isActive("codeBlock")) {
+      return "ri-code-box-line"
+    } else if (this.editor.isActive("paragraph")) {
+      return "ri-paragraph"
     }
   }
 
