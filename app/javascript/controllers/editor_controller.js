@@ -48,7 +48,6 @@ export default class extends Controller {
       autofocus: true,
       editable: true,
       injectCSS: false,
-      // content: this.initialContentTarget.innerHTML,
       onTransaction({ editor }) {
         editor.controller.updateButtonState()
       }
@@ -187,7 +186,6 @@ export default class extends Controller {
   }
 
   setLink() {
-    console.log("setLink")
     const previousUrl = this.editor.getAttributes('link').href
     const url = window.prompt('URL', previousUrl)
 
