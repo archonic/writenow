@@ -4,7 +4,7 @@
 
 import { application } from "./application"
 
-import EditorController from "./editor_controller"
+import EditorController from "./editor/editor_controller"
 application.register("editor", EditorController)
 
 import RubyUi__DropdownMenuController from "./ruby_ui/dropdown_menu_controller"
