@@ -7,10 +7,7 @@
 <div id="documents">
   <% if @documents.any? %>
     <% @documents.each do |document| %>
-      <%= render document %>
-      <p>
-        <%= link_to "Show this document", document %>
-      </p>
+      <%= render RubyUI::Link.new(href: document_path(document) ) { document.name } %>
     <% end %>
   <% else %>
     No documents yet
