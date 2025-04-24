@@ -58,13 +58,11 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params.expect(:id))
     end
 
-    # Only allow a list of trusted parameters through.
     def document_params
-      params.expect(document: [ :name, :description, :body ])
+      params.expect(document: [ :name, :slug ])
     end
 end

@@ -20,7 +20,7 @@ import { TiptapCollabProvider } from '@hocuspocus/provider'
 
 // NOTE This controller expects to be on the form element
 export default class extends Controller {
-  static targets = ["button", "blockSelector", "initialContent", "tiptap", "bodyInput"]
+  static targets = ["button", "blockSelector", "tokenField", "tiptap"]
 
   connect() {
     const lowlight = createLowlight(all)
@@ -52,26 +52,18 @@ export default class extends Controller {
         editor.controller.updateButtonState()
       }
     })
-    this.connectToCollaboration(doc, this.editor, this.initialContentTarget.innerHTML)
+    this.connectToCollaboration(doc, this.editor)
 
     this.editor.controller = this
   }
 
   // Connect to your Collaboration server
-  connectToCollaboration(doc, editor, initialContent) {
+  connectToCollaboration(doc, editor) {
     const provider = new TiptapCollabProvider({
-      name: 'uniquedoc5',              // Unique document identifier for syncing. This is your document name.
-      baseUrl: 'http://127.0.0.1:1234',   // Your Cloud Dashboard AppID or `baseURL` for on-premises
-      token: 'notoken',                   // Your JWT token
-      document: doc,
-      // The onSynced callback ensures initial content is set only once using editor.setContent()
-      // preventing repetitive content loading on editor syncs.
-      onSynced() {
-        if (!doc.getMap('config').get('initialContentLoaded') && editor) {
-          doc.getMap('config').set('initialContentLoaded', true)
-          editor.commands.setContent(initialContent)
-        }
-      },
+      name: this.tokenFieldTarget.value,
+      baseUrl: 'http://127.0.0.1:1234',
+      token: 'notoken',                   // Your user JWT token
+      document: doc
     })
   }
 
@@ -181,7 +173,6 @@ export default class extends Controller {
   }
 
   submit() {
-    this.bodyInputTarget.value = this.editor.getHTML()
     this.element.submit()
   }
 

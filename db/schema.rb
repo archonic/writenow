@@ -51,11 +51,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_165908) do
 
   create_table "documents", force: :cascade do |t|
     t.string "name", null: false
-    t.string "description", null: false
-    t.text "body"
+    t.string "slug", null: false
+    t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_documents_on_name"
+    t.index ["slug"], name: "index_documents_on_slug", unique: true
+    t.index ["token"], name: "index_documents_on_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
