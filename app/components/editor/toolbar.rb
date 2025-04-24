@@ -9,7 +9,7 @@ module Editor
         div(class: "grow flex gap-1") do
           RubyUI::DropdownMenu(options: { placement: "bottom-start" }) do
             DropdownMenuTrigger do
-              Button(class: "w-14 inline-flex") do
+              Editor::Button(class: "w-14 inline-flex") do
                 div(class: "pr-2", "data-editor-target": "blockSelector") { i(class: "ri-heading") }
                 i(class: "ri-arrow-down-s-line")
               end
@@ -59,17 +59,17 @@ module Editor
               end
             end
           end
-          Button(:bold) { i(class: "ri-bold") }
-          Button(:italic) { i(class: "ri-italic") }
-          Button(:strike) { i(class: "ri-strikethrough") }
-          Button(:link_set) { i(class: "ri-link") }
-          Button(:link_unset) { i(class: "ri-link-unlink-m") }
-          Button(:attach) { i(class: "ri-attachment-2") }
+          Editor::Button(:bold) { i(class: "ri-bold") }
+          Editor::Button(:italic) { i(class: "ri-italic") }
+          Editor::Button(:strike) { i(class: "ri-strikethrough") }
+          Editor::Button(:link_set) { i(class: "ri-link") }
+          Editor::Button(:link_unset) { i(class: "ri-link-unlink-m") }
+          Editor::Button(:attach) { i(class: "ri-attachment-2") }
         end
 
         div(class: "flex gap-1") do
-          Button(:undo) { i(class: "ri-arrow-go-back-line") }
-          Button(:redo) { i(class: "ri-arrow-go-forward-line") }
+          Editor::Button(:undo) { i(class: "ri-arrow-go-back-line") }
+          Editor::Button(:redo) { i(class: "ri-arrow-go-forward-line") }
         end
       end
     end
