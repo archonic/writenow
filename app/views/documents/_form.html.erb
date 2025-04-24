@@ -38,7 +38,7 @@
 
   <div class="flex flex-col">
     <%= form.hidden_field :body, id: form.field_id(:body), "data-editor-target": "bodyInput" %>
-    <%= form.hidden_field :token, id: form.field_id(:token), "data-editor-target": "tokenField" %>
+    <%= form.text_field :token, id: form.field_id(:token), "data-editor-target": "tokenField" %>
     <div class="hidden" data-editor-target="initialContent">
       <%= form.object.body.try(:to_trix_html).try(:html_safe) %>
     </div>

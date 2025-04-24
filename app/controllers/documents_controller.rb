@@ -21,7 +21,7 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    @document = Document.new(document_params)
+    @document = Document.new(create_params)
 
     respond_to do |format|
       if @document.save
@@ -37,7 +37,7 @@ class DocumentsController < ApplicationController
   # PATCH/PUT /documents/1 or /documents/1.json
   def update
     respond_to do |format|
-      if @document.update(document_params)
+      if @document.update(update_params)
         format.html { redirect_to @document, notice: "Document was successfully updated." }
         format.json { render :show, status: :ok, location: @document }
       else
@@ -62,7 +62,12 @@ class DocumentsController < ApplicationController
       @document = Document.find(params.expect(:id))
     end
 
-    def document_params
-      params.expect(document: [ :name, :slug ])
+    def create_params
+      # We accept token here because it would otherwise be regenerated upon edit, which nukes the document
+      params.require(:document).permit(:name, :slug, :token)
+    end
+
+    def update_params
+      params.require(:document).permit(:name, :slug)
     end
 end
