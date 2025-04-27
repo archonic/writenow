@@ -71,3 +71,5 @@ gem "phlex-rails", "~> 2.2"
 gem "tailwindcss-rails", "~> 4.0"
 
 gem "tailwind_merge", "~> 1.2"
+
+gem "friendly_id", "~> 5.5"

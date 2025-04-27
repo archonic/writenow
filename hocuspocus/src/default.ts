@@ -37,7 +37,7 @@ const server = new Server({
 				]
 			)
 
-			const railsAutosaveURL = `http://localhost:3000/documents/${data.document.name}/autosave`
+			const railsAutosaveURL = `http://localhost:3000/docs/${data.document.name}/autosave`
 			// Send the HTML to the Rails DB
 			const payload = {
 				document: {
