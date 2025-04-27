@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[ autosave ]
   before_action :set_document, only: %i[ show edit update destroy ]
 
   # GET /documents or /documents.json
@@ -47,6 +48,16 @@ class DocumentsController < ApplicationController
     end
   end
 
+  # Consider seperating this into an API controller. Yes that's a good idea.
+  # POST /documents/:id/autosave, but :id is :token
+  def autosave
+    @document = Document.find_by(token: params[:id])
+    @document.update(body: autosave_params[:body])
+    p @document.body
+    # Respond with 204 No Content regardless of success
+    head :no_content
+  end
+
   # DELETE /documents/1 or /documents/1.json
   def destroy
     @document.destroy!
@@ -69,5 +80,9 @@ class DocumentsController < ApplicationController
 
     def update_params
       params.require(:document).permit(:name, :slug)
+    end
+
+    def autosave_params
+      params.require(:document).permit(:body)
     end
 end

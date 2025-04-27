@@ -53,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_165908) do
     t.string "name", null: false
     t.string "slug", null: false
     t.string "token", null: false
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_documents_on_name"

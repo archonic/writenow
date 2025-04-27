@@ -1,6 +1,14 @@
-import { Logger } from "@hocuspocus/extension-logger";
-import { SQLite } from "@hocuspocus/extension-sqlite";
-import { Server } from "@hocuspocus/server";
+import { Logger } from "@hocuspocus/extension-logger"
+import { SQLite } from "@hocuspocus/extension-sqlite"
+import { TiptapTransformer } from '@hocuspocus/transformer'
+import { generateHTML } from '@tiptap/html'
+import { Server } from "@hocuspocus/server"
+import axios from 'axios'
+
+// All the extensions we want to be a part of the schema
+import { StarterKit } from '@tiptap/starter-kit'
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import { Link } from '@tiptap/extension-link'
 
 const server = new Server({
 	port: 1234,
@@ -9,48 +17,40 @@ const server = new Server({
 	extensions: [
 		new Logger(),
 		new SQLite({
-			database: "../storage/hocuspocus.sqlite",
+			database: "../storage/development_hocuspocus.sqlite3",
 		}),
 	],
 
-	// async onAuthenticate(data) {
-	//   if (data.token !== 'my-access-token') {
-	//     throw new Error('Incorrect access token')
-	//   }
-	// },
+	async onStoreDocument(data) {
+		await new Promise((resolve, reject) => {
+			// Transform the Yjs document to HTML
+			const ydoc = TiptapTransformer.fromYdoc(data.document)
+			let html = generateHTML(
+				{
+					type: 'doc',
+					content: ydoc.default.content
+				},
+				[
+					StarterKit.configure({ codeBlock: false }),
+					Link,
+					CodeBlockLowlight
+				]
+			)
 
-	// Test error handling
-	// async onConnect(data) {
-	//   throw new Error('CRASH')
-	// },
-
-	// async onConnect(data) {
-	//   await new Promise((resolve, reject) => setTimeout(() => {
-	//     // @ts-ignore
-	//     reject()
-	//   }, 1337))
-	// },
-
-	// async onConnect(data) {
-	//   await new Promise((resolve, reject) => setTimeout(() => {
-	//     // @ts-ignore
-	//     resolve()
-	//   }, 1337))
-	// },
-
-	// Intercept HTTP requests
-	// onRequest(data) {
-	//   return new Promise((resolve, reject) => {
-	//     const { response } = data
-	//     // Respond with your custom content
-	//     response.writeHead(200, { 'Content-Type': 'text/plain' })
-	//     response.end('This is my custom response, yay!')
-
-	//     // Rejecting the promise will stop the chain and no further
-	//     // onRequest hooks are run
-	//     return reject()
-	//   })
-	// },
+			const railsAutosaveURL = `http://localhost:3000/documents/${data.document.name}/autosave`
+			// Send the HTML to the Rails DB
+			const payload = {
+				document: {
+					body: html
+				}
+			}
+			axios.post(railsAutosaveURL, payload)
+				.then(response => { })
+				.catch(error => {
+					console.error(`Error: ${error}`)
+				})
+		})
+	}
 });
 
 // server.enableMessageLogging()

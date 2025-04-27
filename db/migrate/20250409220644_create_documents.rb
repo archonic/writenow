@@ -4,6 +4,7 @@ class CreateDocuments < ActiveRecord::Migration[8.0]
       t.string :name, null: false
       t.string :slug, null: false, unique: true
       t.string :token, null: false, unique: true
+      t.text :body
 
       t.index [ "name" ], name: "index_documents_on_name"
       t.index [ "slug" ], name: "index_documents_on_slug"
