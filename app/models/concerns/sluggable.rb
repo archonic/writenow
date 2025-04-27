@@ -1,6 +1,9 @@
 # https://gorails.com/episodes/friendlyid-history
-module SlugReusable
+require "friendly_id/slug_generator"
+
+module Sluggable
   extend ActiveSupport::Concern
+
   class ReusableSlugGenerator < FriendlyId::SlugGenerator
     def available?(slug)
       if @config.uses?(::FriendlyId::Reserved) && @config.reserved_words.present? && @config.treat_reserved_as_conflict
