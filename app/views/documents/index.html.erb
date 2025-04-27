@@ -2,7 +2,16 @@
 
 <% content_for :title, "Documents" %>
 
-<h1 class="text-2xl">Documents</h1>
+<div class="flex justify-between items-center">
+  <h1 class="text-2xl font-bold flex-inline">Documents</h1>
+  <%= render RubyUI::Link.new(href: new_document_path, variant: :primary) do %>
+    <i class="ri-add-line pr-2"></i>
+    <div>
+      New
+    </div>
+  <% end %>
+
+</div>
 
 <div id="documents">
   <% if @documents.any? %>
@@ -13,5 +22,3 @@
     No documents yet
   <% end %>
 </div>
-
-<%= render RubyUI::Link.new(href: new_document_path, variant: :primary) { "New document" } %>
