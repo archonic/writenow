@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "documents#index"
 
-  resources :documents do
+  resources :documents, path: "/d" do
     post "autosave", on: :member
   end
 end
