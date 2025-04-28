@@ -3,14 +3,8 @@
 <% content_for :title, "Documents" %>
 
 <div class="flex justify-between items-center">
-  <h1 class="text-2xl font-bold flex-inline">Documents</h1>
-  <%= render RubyUI::Link.new(href: new_document_path, variant: :primary) do %>
-    <i class="ri-add-line pr-2"></i>
-    <div>
-      New
-    </div>
-  <% end %>
-
+  <h1 class="text-2xl font-bold">Documents</h1>
+  <%= render Documents::NewModal.new %>
 </div>
 
 <div id="documents">

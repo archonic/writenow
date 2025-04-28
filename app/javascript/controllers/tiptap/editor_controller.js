@@ -24,7 +24,6 @@ export default class extends Controller {
   static targets = ["button", "blockSelector", "tokenField", "tiptap"]
 
   connect() {
-    console.log("Editor controller connected")
     const lowlight = createLowlight(all)
     this.registerLowlightLanguages(lowlight)
     const doc = new Y.Doc()

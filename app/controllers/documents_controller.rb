@@ -6,15 +6,11 @@ class DocumentsController < ApplicationController
   # GET /documents or /documents.json
   def index
     @documents = Document.all
+    @document = Document.new
   end
 
   # GET /documents/1 or /documents/1.json
   def show
-  end
-
-  # GET /documents/new
-  def new
-    @document = Document.new
   end
 
   # GET /documents/1/edit
@@ -27,11 +23,9 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: "Document was successfully created." }
-        format.json { render :show, status: :created, location: @document }
+        format.html { redirect_to edit_document_path(@document), notice: "Document successfully created." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+        # turbo stream update the form with errors
       end
     end
   end
@@ -41,10 +35,8 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.update(update_params)
         format.html { redirect_to @document, notice: "Document was successfully updated." }
-        format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +57,6 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to documents_path, status: :see_other, notice: "Document was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

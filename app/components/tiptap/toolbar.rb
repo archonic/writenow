@@ -10,7 +10,7 @@ module Tiptap
           RubyUI::DropdownMenu(options: { placement: "bottom-start" }) do
             DropdownMenuTrigger do
               Tiptap::Button(class: "w-14 inline-flex") do
-                div(class: "pr-2", "data-editor-target": "blockSelector") { i(class: "ri-heading") }
+                div(class: "pr-2", "data-tiptap--editor-target": "blockSelector") { i(class: "ri-heading") }
                 i(class: "ri-arrow-down-s-line")
               end
             end

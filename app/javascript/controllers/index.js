@@ -7,6 +7,11 @@ import { application } from "./application"
 import Tiptap__EditorController from "./tiptap/editor_controller"
 application.register("tiptap--editor", Tiptap__EditorController)
 
+import RubyUi__DialogController from "./ruby_ui/dialog_controller"
+application.register("ruby-ui--dialog", RubyUi__DialogController)
 
 import RubyUi__DropdownMenuController from "./ruby_ui/dropdown_menu_controller"
 application.register("ruby-ui--dropdown-menu", RubyUi__DropdownMenuController)
+
+import RubyUi__FormFieldController from "./ruby_ui/form_field_controller"
+application.register("ruby-ui--form-field", RubyUi__FormFieldController)
