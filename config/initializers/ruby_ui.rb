@@ -4,7 +4,11 @@ module RubyUI
   extend Phlex::Kit
 end
 
-module Editor
+module Tiptap
+  extend Phlex::Kit
+end
+
+module Documents
   extend Phlex::Kit
 end
 
@@ -21,10 +25,18 @@ Rails.autoloaders.main.push_dir(
 # Allow using RubyUI::ComponentName instead RubyUI::ComponentName::ComponentName
 Rails.autoloaders.main.collapse(Rails.root.join("app/components/ruby_ui/*"))
 
-# Adding our own Editor phlex components
+# Add Tiptap phlex components
 Rails.autoloaders.main.push_dir(
-  Rails.root.join("app/components/editor"), namespace: Editor
+  Rails.root.join("app/components/tiptap"), namespace: Tiptap
 )
 
-# Allow using Editor::ComponentName instead Editor::ComponentName::ComponentName
-Rails.autoloaders.main.collapse(Rails.root.join("app/components/editor/*"))
+# Allow using Tiptap::ComponentName instead Tiptap::ComponentName::ComponentName
+Rails.autoloaders.main.collapse(Rails.root.join("app/components/tiptap/*"))
+
+# Document phlex components
+Rails.autoloaders.main.push_dir(
+  Rails.root.join("app/components/documents"), namespace: Documents
+)
+
+# Allow using Document::ComponentName instead Document::ComponentName::ComponentName
+Rails.autoloaders.main.collapse(Rails.root.join("app/components/documents/*"))

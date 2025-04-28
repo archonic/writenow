@@ -19,10 +19,12 @@ import * as Y from 'yjs'
 import { TiptapCollabProvider } from '@hocuspocus/provider'
 
 // NOTE This controller expects to be on the form element
+// Connects to data-controller="tiptap--editor"
 export default class extends Controller {
   static targets = ["button", "blockSelector", "tokenField", "tiptap"]
 
   connect() {
+    console.log("Editor controller connected")
     const lowlight = createLowlight(all)
     this.registerLowlightLanguages(lowlight)
     const doc = new Y.Doc()

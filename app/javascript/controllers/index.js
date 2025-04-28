@@ -4,8 +4,9 @@
 
 import { application } from "./application"
 
-import EditorController from "./editor/editor_controller"
-application.register("editor", EditorController)
+import Tiptap__EditorController from "./tiptap/editor_controller"
+application.register("tiptap--editor", Tiptap__EditorController)
+
 
 import RubyUi__DropdownMenuController from "./ruby_ui/dropdown_menu_controller"
 application.register("ruby-ui--dropdown-menu", RubyUi__DropdownMenuController)

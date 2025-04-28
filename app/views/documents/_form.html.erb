@@ -1,7 +1,7 @@
 <%= form_with(
   model: document,
   html: {
-    "data-controller": "editor",
+    "data-controller": "tiptap--editor",
     class: "flex flex-col gap-5 h-full"
   }) do |form| %>
   <% if document.errors.any? %>
@@ -32,16 +32,16 @@
   <% end %>
 
   <div>
-    <%= render RubyUI::Button.new(type: "button", variant: "primary", data_action: "editor#submit") do
+    <%= render RubyUI::Button.new(type: "button", variant: "primary", data_action: "tiptap--editor#submit") do
       form.object.persisted? ? "Update document" : "Create document"
     end %>
   </div>
 
   <div class="flex flex-col">
-    <%= form.hidden_field :body, id: form.field_id(:body), "data-editor-target": "bodyInput" %>
-    <%= form.hidden_field :token, id: form.field_id(:token), "data-editor-target": "tokenField" %>
+    <%= form.hidden_field :body, id: form.field_id(:body), "data-tiptap--editor-target": "bodyInput" %>
+    <%= form.hidden_field :token, id: form.field_id(:token), "data-tiptap--editor-target": "tokenField" %>
 
-    <%= render Editor::Toolbar.new %>
-    <div data-editor-target="tiptap" class="border-1 border-gray-300 border-t-0 rounded-b-md"></div>
+    <%= render Tiptap::Toolbar.new %>
+    <div data-tiptap--editor-target="tiptap" class="border-1 border-gray-300 border-t-0 rounded-b-md"></div>
   </div>
 <% end %>

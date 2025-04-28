@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Editor
-  class Button < Editor::Base
+module Tiptap
+  class Button < Tiptap::Base
     # May want `inline-flex` on this but it messes with `hidden`
     DEFAULT_CLASSES = "whitespace-nowrap items-center justify-center rounded-sm
     font-medium transition-colors

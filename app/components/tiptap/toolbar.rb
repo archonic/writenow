@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Editor
-  class Toolbar < Editor::Base
+module Tiptap
+  class Toolbar < Tiptap::Base
     WRAPPER_CLASSES = "flex gap-1 border-1 border-gray-300 rounded-t-md p-1"
 
     def view_template(&)
@@ -9,7 +9,7 @@ module Editor
         div(class: "grow flex gap-1") do
           RubyUI::DropdownMenu(options: { placement: "bottom-start" }) do
             DropdownMenuTrigger do
-              Editor::Button(class: "w-14 inline-flex") do
+              Tiptap::Button(class: "w-14 inline-flex") do
                 div(class: "pr-2", "data-editor-target": "blockSelector") { i(class: "ri-heading") }
                 i(class: "ri-arrow-down-s-line")
               end
@@ -59,17 +59,17 @@ module Editor
               end
             end
           end
-          Editor::Button(:bold) { i(class: "ri-bold") }
-          Editor::Button(:italic) { i(class: "ri-italic") }
-          Editor::Button(:strike) { i(class: "ri-strikethrough") }
-          Editor::Button(:link_set) { i(class: "ri-link") }
-          Editor::Button(:link_unset) { i(class: "ri-link-unlink-m") }
-          Editor::Button(:attach) { i(class: "ri-attachment-2") }
+          Tiptap::Button(:bold) { i(class: "ri-bold") }
+          Tiptap::Button(:italic) { i(class: "ri-italic") }
+          Tiptap::Button(:strike) { i(class: "ri-strikethrough") }
+          Tiptap::Button(:link_set) { i(class: "ri-link") }
+          Tiptap::Button(:link_unset) { i(class: "ri-link-unlink-m") }
+          Tiptap::Button(:attach) { i(class: "ri-attachment-2") }
         end
 
         div(class: "flex gap-1") do
-          Editor::Button(:undo) { i(class: "ri-arrow-go-back-line") }
-          Editor::Button(:redo) { i(class: "ri-arrow-go-forward-line") }
+          Tiptap::Button(:undo) { i(class: "ri-arrow-go-back-line") }
+          Tiptap::Button(:redo) { i(class: "ri-arrow-go-forward-line") }
         end
       end
     end
