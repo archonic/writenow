@@ -4,7 +4,7 @@
 
 <div class="flex justify-between items-center">
   <h1 class="text-2xl font-bold">Documents</h1>
-  <%= render Documents::NewModal.new %>
+  <%= render Documents::NewModal.new(model: @document) %>
 </div>
 
 <div id="documents">

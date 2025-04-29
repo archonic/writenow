@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
-  # GET /documents/1 or /documents/1.json
+  # GET /documents/1
   def show
   end
 
@@ -23,14 +23,14 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to edit_document_path(@document), notice: "Document successfully created." }
+        format.html { redirect_to edit_document_path(@document), status: :see_other, notice: "Document successfully created." }
       else
-        # turbo stream update the form with errors
+        format.turbo_stream
       end
     end
   end
 
-  # PATCH/PUT /documents/1 or /documents/1.json
+  # PATCH/PUT /documents/1
   def update
     respond_to do |format|
       if @document.update(update_params)
@@ -51,7 +51,7 @@ class DocumentsController < ApplicationController
     head :no_content
   end
 
-  # DELETE /documents/1 or /documents/1.json
+  # DELETE /documents/1
   def destroy
     @document.destroy!
 

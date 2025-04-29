@@ -2,6 +2,13 @@
 
 module Documents
   class NewModal < RubyUI::Base
+    attr_reader :model
+
+    def initialize(model:, **attrs)
+      @model = model
+      super(**attrs)
+    end
+
     def view_template(&)
       Dialog do
         Button(class: "gap-2", data: { action: "ruby-ui--dialog#open" }) do
@@ -15,13 +22,7 @@ module Documents
               div { "Create a new document" }
             end
           end
-          div(class: "py-4") do
-            Form(action: "/docs", method: :post, id: "new_doc_form", data: { action: "submit->ruby-ui--dialog#dismiss" }) do
-              FormField do
-                Input(name: "document[name]", placeholder: "Name", required: true, data: { ruby_ui__dialog_target: "autofocus" })
-              end
-            end
-          end
+          Documents::NewForm(model:)
           DialogFooter(class: "justify-between") do
             Button(variant: :outline, data: { action: "click->ruby-ui--dialog#dismiss" }) { "Cancel" }
             Button(type: "submit", value: "Submit", form: "new_doc_form") { "Create" }
