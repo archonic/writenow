@@ -19,7 +19,6 @@ module Sluggable
     extend FriendlyId
     friendly_id :name, use: [ :slugged, :history ], slug_generator_class: ReusableSlugGenerator
 
-    validates :name, presence: true
     validates :slug, presence: true, uniqueness: true
   end
 end
