@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
   before_action :redirect_if_slug_historical, only: %i[ show edit update ]
 
-  # GET /documents or /documents.json
+  # GET /documents
   def index
     @documents = Document.all
     @document = Document.new
@@ -17,7 +17,7 @@ class DocumentsController < ApplicationController
   def edit
   end
 
-  # POST /documents or /documents.json
+  # POST /documents
   def create
     @document = Document.new(create_params)
 
