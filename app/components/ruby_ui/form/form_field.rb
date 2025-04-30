@@ -12,8 +12,7 @@ module RubyUI
       {
         data: {
           controller: "ruby-ui--form-field"
-        },
-        class: "space-y-2"
+        }
       }
     end
   end

@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AutoSubmit from "./autosubmit"
+application.register("autosubmit", AutoSubmit)
+
 import Tiptap__EditorController from "./tiptap/editor_controller"
 application.register("tiptap--editor", Tiptap__EditorController)
 

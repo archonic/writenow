@@ -232,4 +232,13 @@
       font-weight: 700;
     }
   }
+
+  /* Placeholder (on every new line) */
+  .is-empty::before {
+    color: var(--color-gray-300);
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
 }

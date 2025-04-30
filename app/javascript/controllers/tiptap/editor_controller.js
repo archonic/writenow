@@ -1,8 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 import { Editor } from '@tiptap/core'
+import Document from '@tiptap/extension-document'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
+import Placeholder from '@tiptap/extension-placeholder'
 
 // Code block with syntax highlighting
 import css from 'highlight.js/lib/languages/css'
@@ -20,6 +22,7 @@ import { TiptapCollabProvider } from '@hocuspocus/provider'
 
 // NOTE This controller expects to be on the form element
 // Connects to data-controller="tiptap--editor"
+// I bet we could write our own export for all things Tiptap.
 export default class extends Controller {
   static targets = ["button", "blockSelector", "tokenField", "tiptap"]
 
@@ -28,10 +31,17 @@ export default class extends Controller {
     this.registerLowlightLanguages(lowlight)
     const doc = new Y.Doc()
 
+
+    // Extend the Document extension to force an H1?
+    const TitledDocument = Document.extend({
+      content: 'heading block*',
+    })
+
     this.editor = new Editor({
       element: this.tiptapTarget,
       extensions: [
         StarterKit.configure({
+          document: false,
           codeBlock: false,
           history: false
         }),
@@ -44,6 +54,17 @@ export default class extends Controller {
         }),
         Collaboration.configure({
           document: doc,
+        }),
+        TitledDocument,
+        Placeholder.configure({
+          placeholder: ({ node }) => {
+            if (node.type.name === 'heading') {
+              return 'New document'
+            }
+
+            // This appears on every new empty node. Good place to put a prompt for a command.
+            // return 'Type `/` for commands (not yet implemented)'
+          },
         }),
       ],
       autofocus: true,

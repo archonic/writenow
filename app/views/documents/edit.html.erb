@@ -1,3 +1,4 @@
 <% content_for :title, "Editing document" %>
 
-<%= render "form", document: @document %>
+<%= render Documents::EditForm.new(model: @document) %>
+
