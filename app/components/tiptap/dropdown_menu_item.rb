@@ -21,7 +21,7 @@ module Tiptap
         tabindex: "-1",
         data_orientation: "vertical",
         data_ruby_ui__dropdown_menu_target: "menuItem",
-        data_editor_target: "button"
+        data_tiptap__editor_target: "button"
       }
     end
   end

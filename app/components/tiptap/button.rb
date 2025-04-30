@@ -22,7 +22,7 @@ module Tiptap
       {
         type: :button,
         class: DEFAULT_CLASSES,
-        data_editor_target: "button"
+        data_tiptap__editor_target: "button"
       }
     end
   end

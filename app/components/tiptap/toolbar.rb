@@ -2,7 +2,7 @@
 
 module Tiptap
   class Toolbar < Tiptap::Base
-    WRAPPER_CLASSES = "flex gap-1 border-1 border-gray-300 rounded-t-md p-1"
+    WRAPPER_CLASSES = "flex gap-1 p-1"
 
     def view_template(&)
       div(**attrs) do

@@ -20,9 +20,8 @@ import Collaboration from '@tiptap/extension-collaboration'
 import * as Y from 'yjs'
 import { TiptapCollabProvider } from '@hocuspocus/provider'
 
-// NOTE This controller expects to be on the form element
 // Connects to data-controller="tiptap--editor"
-// I bet we could write our own export for all things Tiptap.
+// NOTE I bet we could write our own export for all things Tiptap.
 export default class extends Controller {
   static targets = ["button", "blockSelector", "tokenField", "tiptap"]
 
@@ -59,7 +58,6 @@ export default class extends Controller {
             if (node.type.name === 'heading') {
               return 'New document'
             }
-
             // This appears on every new empty node. Good place to put a prompt for a command.
             // return 'Type `/` for commands (not yet implemented)'
           },
@@ -190,10 +188,6 @@ export default class extends Controller {
   runCommand(event) {
     let command = event.currentTarget.dataset.command
     this.editor.chain().focus()[command]().run()
-  }
-
-  submit() {
-    this.element.submit()
   }
 
   setLink() {

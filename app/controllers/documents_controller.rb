@@ -31,22 +31,22 @@ class DocumentsController < ApplicationController
   end
 
   # PATCH/PUT /documents/1
-  # Deprecated. Slug will move to settings drawer. Name will be controlled by Editor.
-  # def update
-  #   respond_to do |format|
-  #     if @document.update(update_params)
-  #       notice = "Document was successfully updated."
-  #       if @document.slug_previously_changed?
-  #         format.html { redirect_to edit_document_path(@document), notice: }
-  #       else
-  #         format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, Documents::EditForm.new(model: @document)) }
-  #         # format.turbo_stream { render turbostream: turbo_stream.replace(@document) }
-  #       end
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  # NOTE This is only for document settings
+  def update
+    respond_to do |format|
+      if @document.update(update_params)
+        notice = "Document was successfully updated."
+        if @document.slug_previously_changed?
+          format.html { redirect_to edit_document_path(@document), notice: }
+        else
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, Documents::EditForm.new(model: @document)) }
+          # format.turbo_stream { render turbostream: turbo_stream.replace(@document) }
+        end
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # Consider seperating this into an API controller. Yes that's a good idea.
   # POST /documents/:id/autosave, but :id is :token
