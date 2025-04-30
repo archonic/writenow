@@ -2,6 +2,13 @@
 
 module RubyUI
   class Button < Base
+    # Why no pointer?
+    DEFAULT_CLASSES = %w[
+      whitespace-nowrap inline-flex items-center text-center justify-center rounded-md font-medium
+      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+      disabled:pointer-events-none disabled:opacity-50
+    ]
+
     def initialize(type: :button, variant: :primary, size: :md, icon: false, **attrs)
       @type = type
       @variant = variant.to_sym
@@ -35,49 +42,31 @@ module RubyUI
     end
 
     def primary_classes
-      [
-        "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        size_classes
-      ]
+      "bg-primary text-primary-foreground shadow hover:bg-primary/90"
     end
 
     def link_classes
-      [
-        "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline",
-        size_classes
-      ]
+      "text-primary underline-offset-4 hover:underline"
     end
 
     def secondary_classes
-      [
-        "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-opacity-80",
-        size_classes
-      ]
+      "bg-secondary text-secondary-foreground hover:bg-opacity-80"
     end
 
     def destructive_classes
-      [
-        "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        size_classes
-      ]
+      "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/80"
     end
 
     def outline_classes
-      [
-        "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        size_classes
-      ]
+      "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground"
     end
 
     def ghost_classes
-      [
-        "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground",
-        size_classes
-      ]
+      "hover:bg-accent hover:text-accent-foreground"
     end
 
     def default_classes
-      case @variant
+      variant_classes = case @variant
       when :primary then primary_classes
       when :link then link_classes
       when :secondary then secondary_classes
@@ -85,6 +74,7 @@ module RubyUI
       when :outline then outline_classes
       when :ghost then ghost_classes
       end
+      [ DEFAULT_CLASSES, size_classes, variant_classes ]
     end
 
     def default_attrs
