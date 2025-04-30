@@ -4,5 +4,5 @@ class Document < ApplicationRecord
 
   validates :token, presence: true, uniqueness: true
   has_secure_token :token, length: 36
-  validates :name, presence: true, length: 10..100
+  validates :name, presence: true, length: 1..100
 end

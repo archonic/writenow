@@ -1,23 +1,18 @@
 class DocumentsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[ autosave ]
   before_action :set_document, only: %i[ show edit update destroy ]
   before_action :redirect_if_slug_historical, only: %i[ show edit update ]
 
-  # GET /documents
   def index
     @documents = Document.all
     @document = Document.new
   end
 
-  # GET /documents/1
   def show
   end
 
-  # GET /documents/1/edit
   def edit
   end
 
-  # POST /documents
   def create
     @document = Document.new(create_params)
 
@@ -30,7 +25,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1
   # NOTE This is only for document settings
   def update
     respond_to do |format|
@@ -48,17 +42,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # Consider seperating this into an API controller. Yes that's a good idea.
-  # POST /documents/:id/autosave, but :id is :token
-  def autosave
-    @document = Document.find_by(token: params[:id])
-    @document.update(body: autosave_params[:body])
-    p @document.body
-    # Respond with 204 No Content regardless of success
-    head :no_content
-  end
-
-  # DELETE /documents/1
   def destroy
     @document.destroy!
 
@@ -84,10 +67,6 @@ class DocumentsController < ApplicationController
     end
 
     def update_params
-      params.require(:document).permit(:name, :slug)
-    end
-
-    def autosave_params
-      params.require(:document).permit(:body)
+      params.require(:document).permit(:slug)
     end
 end

@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   root "documents#index"
 
   resources :documents, path: "/docs", except: %i[new] do
-    post "autosave", on: :member
+    post "autosave", on: :member, to: "api/documents#autosave"
   end
 end

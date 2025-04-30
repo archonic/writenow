@@ -1,6 +1,3 @@
 <div id="<%= dom_id document %>" class="tiptap ProseMirror border-1 border-gray-300 rounded-md">
-  <h1>
-    <%= document.name %>
-  </h1>
   <%= document.body.try(:html_safe) %>
 </div>
