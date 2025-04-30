@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Documents
-  class EditForm < RubyUI::Base
+  class Edit < RubyUI::Base
     include Phlex::Rails::Helpers::HiddenFieldTag
     attr_reader :model
 

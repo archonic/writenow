@@ -39,7 +39,7 @@ class DocumentsController < ApplicationController
         if @document.slug_previously_changed?
           format.html { redirect_to edit_document_path(@document), notice: }
         else
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, Documents::EditForm.new(model: @document)) }
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, Documents::Edit.new(model: @document)) }
           # format.turbo_stream { render turbostream: turbo_stream.replace(@document) }
         end
       else
