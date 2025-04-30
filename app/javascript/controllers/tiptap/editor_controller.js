@@ -31,8 +31,6 @@ export default class extends Controller {
     this.registerLowlightLanguages(lowlight)
     const doc = new Y.Doc()
 
-
-    // Extend the Document extension to force an H1?
     const TitledDocument = Document.extend({
       content: 'heading block*',
     })
