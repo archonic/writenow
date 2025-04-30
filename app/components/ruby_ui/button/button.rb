@@ -4,8 +4,9 @@ module RubyUI
   class Button < Base
     # Why no pointer?
     DEFAULT_CLASSES = %w[
-      whitespace-nowrap inline-flex items-center text-center justify-center rounded-md font-medium
+      whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors
       focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+      cursor-pointer
       disabled:pointer-events-none disabled:opacity-50
     ]
 
