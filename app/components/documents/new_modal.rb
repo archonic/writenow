@@ -13,7 +13,7 @@ module Documents
       Dialog do
         Button(class: "gap-2", data: { action: "ruby-ui--dialog#open" }) do
           i(class: "ri-add-line")
-          div { "New" }
+          span { "New" }
         end
         DialogContent do
           DialogHeader do
