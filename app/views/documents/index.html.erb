@@ -2,17 +2,19 @@
 
 <% content_for :title, "Documents" %>
 
-<div class="flex justify-between items-center">
+<div class="flex justify-between items-center mb-5">
   <h1 class="text-2xl font-bold">Documents</h1>
   <%= render Documents::NewModal.new(model: @document) %>
 </div>
 
-<div id="documents">
+<div id="documents" class="grid grid-cols-4 md gap-4">
   <% if @documents.any? %>
     <% @documents.each do |document| %>
-      <%= render RubyUI::Link.new(href: document_path(document) ) { document.name } %>
+      <%= render Documents::Preview.new(model: document) %>
     <% end %>
   <% else %>
-    No documents yet
+    <div class="col-span-4 h-32 flex items-center justify-center">
+      <p class="text-center text-gray-500">No documents yet</p>
+    </div>
   <% end %>
 </div>
