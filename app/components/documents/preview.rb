@@ -24,9 +24,9 @@ module Documents
             i(class: "ri-hourglass-fill")
             div { "22 mins" }
           end
-          Button(variant: :outline, size: :sm, class: "size-8") do
-            i(class: "ri-more-line")
-          end
+          # Button(variant: :outline, size: :sm, class: "size-8") do
+          #   i(class: "ri-more-line")
+          # end
         end
       end
     end
