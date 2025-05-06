@@ -184,8 +184,6 @@ export default class TiptapSetup {
     container.innerHTML = `<i class="${this.activeIcon()}"></i>`
   }
 
-  // Potential for refactoring. Iterate over buttons with specific data attr?
-  // Lowest priority should be last. You can have a paragraph inside other blocks.
   activeIcon() {
     if (this.editor.isActive("heading")) {
       if (this.editor.isActive("heading", { level: 1 })) {
