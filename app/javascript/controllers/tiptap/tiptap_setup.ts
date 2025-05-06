@@ -1,4 +1,4 @@
-import { Editor } from '@tiptap/core'
+import { Editor, SingleCommands } from '@tiptap/core'
 import Document from '@tiptap/extension-document'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import StarterKit from '@tiptap/starter-kit'
@@ -23,14 +23,11 @@ export default class TiptapSetup {
   editor: Editor
   buttonTargets: HTMLButtonElement[]
   blockSelectorTarget: HTMLButtonElement
-  tokenFieldTarget: HTMLInputElement
-  initialContentTarget: HTMLTemplateElement
-  tiptapTarget: HTMLDivElement
 
   // @ts-ignore
   collaboration: TiptapCollabProvider
   // @ts-ignore
-  doc: Y.Doc
+  declare doc: Y.Doc
 
   constructor(
     buttonTargets: HTMLButtonElement[],
@@ -114,7 +111,7 @@ export default class TiptapSetup {
     })
   }
 
-  registerLowlightLanguages(lowlight) {
+  registerLowlightLanguages(lowlight: any) {
     lowlight.register('html', html)
     lowlight.register('css', css)
     lowlight.register('js', js)
@@ -132,7 +129,7 @@ export default class TiptapSetup {
     this.setSelection(this.blockSelectorTarget)
   }
 
-  setActiveState(button) {
+  setActiveState(button: HTMLButtonElement) {
     const activeClass = "bg-sky-300"
     if (button.dataset.active !== undefined) {
       if (button.dataset.level === undefined) {
@@ -152,9 +149,11 @@ export default class TiptapSetup {
     }
   }
 
-  setDisabledState(button) {
+  setDisabledState(button: HTMLButtonElement) {
     if (button.dataset.disable !== undefined) {
-      if (this.editor.can()[button.dataset.disable]()) {
+      const disableKey: string = button.dataset.disable as keyof SingleCommands
+      // @ts-ignore
+      if (this.editor.can()[disableKey]()) {
         button.removeAttribute("disabled")
       } else {
         button.setAttribute("disabled", "disabled")
@@ -162,7 +161,7 @@ export default class TiptapSetup {
     }
   }
 
-  setVisibleState(button) {
+  setVisibleState(button: HTMLButtonElement) {
     if (button.dataset.visible !== undefined) {
       if (this.editor.isActive(button.dataset.visible)) {
         button.classList.remove("hidden")
@@ -180,7 +179,7 @@ export default class TiptapSetup {
     }
   }
 
-  setSelection(container) {
+  setSelection(container: HTMLButtonElement) {
     container.innerHTML = `<i class="${this.activeIcon()}"></i>`
   }
 
@@ -209,4 +208,4 @@ export default class TiptapSetup {
   }
 }
 
-export { TiptapSetup }
+export { TiptapSetup, Editor }
