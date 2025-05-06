@@ -16,85 +16,85 @@ class Tiptap::Base < RubyUI::Base
     case @key
     when :paragraph
       {
-        action: "ruby-ui--dropdown-menu#close editor#runCommand",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#runCommand",
         command: "setParagraph",
         active: "paragraph"
       }
     when :heading_1
       {
-        action: "ruby-ui--dropdown-menu#close editor#toggleHeading",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#toggleHeading",
         level: 1,
         active: "heading"
       }
     when :heading_2
       {
-        action: "ruby-ui--dropdown-menu#close editor#toggleHeading",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#toggleHeading",
         level: 2,
         active: "heading"
       }
     when :heading_3
       {
-        action: "ruby-ui--dropdown-menu#close editor#toggleHeading",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#toggleHeading",
         level: 3,
         active: "heading"
       }
     when :heading_4
       {
-        action: "ruby-ui--dropdown-menu#close editor#toggleHeading",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#toggleHeading",
         level: 4,
         active: "heading"
       }
     when :heading_5
       {
-        action: "ruby-ui--dropdown-menu#close editor#toggleHeading",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#toggleHeading",
         level: 5,
         active: "heading"
       }
     when :heading_6
       {
-        action: "ruby-ui--dropdown-menu#close editor#toggleHeading",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#toggleHeading",
         level: 6,
         active: "heading"
       }
     when :ul
       {
-        action: "ruby-ui--dropdown-menu#close editor#runCommand",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#runCommand",
         command: "toggleBulletList",
         active: "bulletList"
       }
     when :ol
       {
-        action: "ruby-ui--dropdown-menu#close editor#runCommand",
+        action: "ruby-ui--dropdown-menu#close tiptap--editor#runCommand",
         command: "toggleOrderedList",
         active: "orderedList"
       }
     when :codeblock
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "toggleCodeBlock",
         active: "codeBlock"
       }
     when :bold
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "toggleBold",
         active: "bold"
       }
     when :italic
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "toggleItalic",
         active: "italic"
       }
     when :strike
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "toggleStrike",
         active: "strike"
       }
     when :blockquote
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "toggleBlockquote",
         active: "blockquote"
       }
@@ -105,26 +105,26 @@ class Tiptap::Base < RubyUI::Base
       }
     when :undo
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "undo",
         active: "undo",
         disable: "undo"
       }
     when :redo
       {
-        action: "editor#runCommand",
+        action: "tiptap--editor#runCommand",
         command: "redo",
         active: "redo",
         disable: "redo"
       }
     when :link_set
       {
-        action: "editor#setLink",
+        action: "tiptap--editor#setLink",
         hidden: "link"
       }
     when :link_unset
       {
-        action: "editor#unsetLink",
+        action: "tiptap--editor#unsetLink",
         visible: "link"
       }
     else
