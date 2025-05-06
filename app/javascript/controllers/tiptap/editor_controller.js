@@ -23,7 +23,7 @@ import { TiptapCollabProvider } from '@hocuspocus/provider'
 // Connects to data-controller="tiptap--editor"
 // NOTE I bet we could write our own export for all things Tiptap.
 export default class extends Controller {
-  static targets = ["button", "blockSelector", "tokenField", "tiptap"]
+  static targets = ["button", "blockSelector", "tokenField", "initialContent", "tiptap"]
 
   connect() {
     const lowlight = createLowlight(all)
@@ -70,18 +70,24 @@ export default class extends Controller {
         editor.controller.updateButtonState()
       }
     })
-    this.connectToCollaboration(doc, this.editor)
+    this.connectToCollaboration(doc, this.editor, this.initialContentTarget.innerHTML)
 
     this.editor.controller = this
   }
 
   // Connect to your Collaboration server
-  connectToCollaboration(doc, editor) {
+  connectToCollaboration(doc, editor, initialContent) {
     const provider = new TiptapCollabProvider({
       name: this.tokenFieldTarget.value,
       baseUrl: 'http://127.0.0.1:1234',
       token: 'notoken',                   // Your user JWT token
-      document: doc
+      document: doc,
+      onSynced() {
+        if (!doc.getMap('config').get('initialContentLoaded') && editor) {
+          doc.getMap('config').set('initialContentLoaded', true)
+          editor.commands.setContent(initialContent)
+        }
+      },
     })
   }
 

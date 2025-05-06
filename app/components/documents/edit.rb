@@ -13,8 +13,12 @@ module Documents
     def view_template(&)
       div(data: { controller: "tiptap--editor" }) do
         hidden_field_tag :token, model.token, data: { tiptap__editor_target: "tokenField" }
+        template(data: { tiptap__editor_target: "initialContent" }) do
+          model.body.try(:html_safe)
+        end
         div(class: "flex flex-col") do
           Tiptap::Toolbar()
+          # This should remain empty. It will become the editor.
           div(data: { tiptap__editor_target: "tiptap" })
         end
       end

@@ -15,6 +15,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(create_params)
+    @document.body = "<h1>#{create_params[:name]}</h1><p></p>"
 
     respond_to do |format|
       if @document.save
