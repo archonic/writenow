@@ -1,4 +1,15 @@
-<% content_for :title, "Editing document" %>
+<% content_for :title, "Editing #{@document.name}" %>
+<% content_for :left_nav do %>
+  <%= render RubyUI::Link.new(variant: :secondary, href: document_path(@document), class: "gap-2") do %>
+    <i class="ri-arrow-left-line"></i>
+    Document
+  <% end %>
+<% end %>
+<% content_for :right_nav do %>
+  <%= render RubyUI::Button.new(variant: :secondary, icon: true) do %>
+    <i class="ri-settings-3-line"></i>
+  <% end %>
+<% end %>
 
 <%= render Documents::Edit.new(model: @document) %>
 

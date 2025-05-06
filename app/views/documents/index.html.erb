@@ -2,10 +2,12 @@
 
 <% content_for :title, "Documents" %>
 
-<div class="flex justify-between items-center mb-5">
+<% content_for :left_nav do %>
   <h1 class="text-2xl font-bold">Documents</h1>
+<% end %>
+<% content_for :right_nav do %>
   <%= render Documents::NewModal.new(model: @document) %>
-</div>
+<% end %>
 
 <div id="documents" class="grid grid-cols-4 md gap-4">
   <% if @documents.any? %>

@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @document.name %>
+<% content_for :left_nav do %>
+  <%= render RubyUI::Link.new(variant: :secondary, href: documents_path, class: "gap-2") do %>
+    <i class="ri-arrow-left-line"></i>
+    Documents
+  <% end %>
+<% end %>
+<% content_for :right_nav do %>
+  <%= render RubyUI::Link.new(variant: :secondary, href: edit_document_path(@document), class: "gap-2") do %>
+    <i class="ri-edit-line"></i>
+    Edit
+  <% end %>
+<% end %>
 
-<div>
-  <%= link_to "Edit this document", edit_document_path(@document) %> |
-  <%= link_to "Back to documents", documents_path %>
-
-  <%= button_to "Destroy this document", @document, method: :delete %>
-</div>
-<hr class="my-5">
 <%= render @document %>

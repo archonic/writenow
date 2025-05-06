@@ -1,0 +1,17 @@
+<nav class="relative flex h-16 items-center justify-between">
+  <div>
+    <% if content_for? :left_nav %>
+      <%= yield :left_nav %>
+    <% else %>
+      left
+    <% end %>
+  </div>
+
+  <div>
+    <% if content_for? :right_nav %>
+      <%= yield :right_nav %>
+    <% else %>
+      right
+    <% end %>
+  </div>
+</nav>

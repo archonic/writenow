@@ -24,7 +24,9 @@
   </head>
 
   <body>
-    <div class="p-5 mx-auto max-w-[64rem]">
+    <div class="p-5 mx-auto max-w-[64rem] space-y-5">
+      <%= render partial: "layouts/navigation" %>
+      <p style="color: green"><%= notice %></p>
       <%= yield %>
     </div>
   </body>
