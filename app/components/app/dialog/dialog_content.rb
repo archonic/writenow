@@ -11,8 +11,7 @@ module App
       duration-200 [open]:animate-in [open]:fade-in-0 :not([open]):animate-out :not([open]):fade-out-0 :not([open]):zoom-out-95 data-[state=open]:zoom-in-95 :not([open]):slide-out-to-left-1/2 :not([open]):slide-out-to-top-[48%] [open]:slide-in-from-left-1/2 [open]:slide-in-from-top-[48%]
     ]
 
-    def initialize(open = false, **attrs)
-      @open = open
+    def initialize(**attrs)
       super(**attrs)
     end
 

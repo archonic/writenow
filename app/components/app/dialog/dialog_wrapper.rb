@@ -2,7 +2,8 @@
 
 module App
   class DialogWrapper < Components::Base
-    def initialize(**attrs)
+    def initialize(open: false, **attrs)
+      @open = open
       super(**attrs)
     end
 
@@ -17,7 +18,8 @@ module App
     def default_attrs
       {
         data: {
-          controller: "app--dialog"
+          controller: "app--dialog",
+          app__dialog_open_value: @open
         }
       }
     end

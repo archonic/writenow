@@ -15,7 +15,7 @@ module App
           i(class: "ri-add-line")
           plain "New"
         end
-        DialogContent(open: false) do
+        DialogContent do
           DialogHeader do
             DialogTitle(class: "inline-flex gap-2") do
               i(class: "ri-draft-line")
