@@ -3,7 +3,7 @@
 module App
   class DialogClose < Components::Base
     def view_template(&)
-      Button(
+      RubyUI::Button(
         variant: :ghost,
         size: :sm,
         class: "absolute end-4 top-4 focus:ring-2 focus:ring-ring focus:ring-offset-2 data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",

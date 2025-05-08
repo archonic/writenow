@@ -6,7 +6,7 @@
   <h1 class="text-2xl font-bold">Documents</h1>
 <% end %>
 <% content_for :right_nav do %>
-  <%= render App::NewDocumentModal.new(model: @document) %>
+  <%= render Documents::NewModal.new(model: @document) %>
 <% end %>
 
 <div id="documents" class="grid grid-cols-4 md gap-4">

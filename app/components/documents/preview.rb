@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Documents
-  class Preview < RubyUI::Base
+  class Preview < Components::Base
     include Phlex::Rails::Helpers::Routes
     attr_reader :model
 
@@ -24,7 +24,8 @@ module Documents
             i(class: "ri-hourglass-fill")
             div { "22 mins" }
           end
-          # Button(variant: :outline, size: :sm, class: "size-8") do
+          # Maybe we want an action menu here
+          # Button(variant: :ghost, size: :sm) do
           #   i(class: "ri-more-line")
           # end
         end

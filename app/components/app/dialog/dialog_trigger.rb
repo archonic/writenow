@@ -14,7 +14,8 @@ module App
       {
         data: {
           action: "app--dialog#open"
-        }
+        },
+        class: "gap-2"
       }
     end
   end

@@ -10,7 +10,7 @@ module App
 
     def default_attrs
       {
-        class: "text-lg font-semibold leading-none tracking-tight"
+        class: "text-lg font-semibold leading-none tracking-tight inline-flex gap-2"
       }
     end
   end

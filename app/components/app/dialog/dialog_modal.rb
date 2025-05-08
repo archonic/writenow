@@ -13,7 +13,7 @@ module App
     def view_template(&)
       dialog(**attrs) do
         yield
-        DialogClose
+        DialogClose()
       end
     end
 

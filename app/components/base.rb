@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class Components::Base < Phlex::HTML
-  include Components
+  include Components # needed?
   include RubyUI
+  include App
+  include Tiptap
   TAILWIND_MERGER = ::TailwindMerge::Merger.new.freeze unless defined?(TAILWIND_MERGER)
 
   # Include any helpers you want to be available across all components
   include Phlex::Rails::Helpers::Routes
+  include Phlex::Rails::Helpers::DOMID
+  include Phlex::Rails::Helpers::TurboFrameTag
 
   if Rails.env.development?
     def before_template

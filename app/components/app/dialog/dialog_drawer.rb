@@ -7,6 +7,7 @@ module App
       app-dialog p-6 overflow-y-auto shadow-xl bg-background
       fixed
       min-h-screen w-80
+      space-y-4
     ].freeze
 
     def initialize(placement: :right, **attrs)
@@ -18,7 +19,7 @@ module App
     def view_template(&)
       dialog(**attrs) do
         yield
-        DialogClose
+        DialogClose()
       end
     end
 

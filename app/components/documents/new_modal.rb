@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module App
-  class NewDocumentModal < Components::Base
+module Documents
+  class NewModal < Components::Base
     attr_reader :model
 
     def initialize(model:, **attrs)
@@ -11,20 +11,20 @@ module App
 
     def view_template(&)
       DialogWrapper do
-        DialogTrigger(class: "gap-2") do
+        DialogTrigger do
           i(class: "ri-add-line")
           plain "New"
         end
         DialogModal do
           DialogHeader do
-            DialogTitle(class: "inline-flex gap-2") do
+            DialogTitle do
               i(class: "ri-draft-line")
               plain "Create a new document"
             end
             Documents::NewForm(model:)
-            DialogFooter(class: "justify-between") do
-              Button(variant: :outline, data: { action: "app--dialog#close" }) { "Cancel" }
-              Button(type: "submit", value: "Submit", form: "new_doc_form") { "Create" }
+            DialogFooter do
+              RubyUI::Button(variant: :outline, data: { action: "app--dialog#close" }) { "Cancel" }
+              RubyUI::Button(type: "submit", value: "Submit", form: dom_id(model)) { "Create" }
             end
           end
         end

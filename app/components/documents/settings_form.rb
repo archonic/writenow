@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Documents
-  class NewForm < Components::Base
-    include Phlex::Rails::Helpers::TurboFrameTag
-    include Phlex::Rails::Helpers::DOMID
+  class SettingsForm < Components::Base
     attr_reader :model
 
     def initialize(model:, **attrs)
@@ -13,21 +11,24 @@ module Documents
 
     def view_template(&)
       turbo_frame_tag(dom_id(model), class: "py-4") do
-        RubyUI::Form(action: "/docs", method: :post, data: { turbo_frame: "_top" }) do
-          name_field
+        RubyUI::Form(action: "/doc", method: :patch, data: { turbo_frame: "_top" }) do
+          slug_field
         end
       end
     end
 
     private
 
-    def name_field
+    def slug_field
       FormField do
-        invalid_class = model.errors[:name].any? ? "border-red-500" : ""
+        # TODO Perhaps the RubyUI::Input should take a model / attribute and handle errors itself
+        invalid_class = model.errors[:slug].any? ? "border-red-500" : ""
+        FormFieldLabel { plain "Slug" }
         Input(
-          name: "document[name]",
-          placeholder: "Name",
+          name: "document[slug]",
+          placeholder: "Slug",
           required: true,
+          value: model.slug,
           class: invalid_class
         )
         if model.errors[:name].any?
