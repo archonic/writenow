@@ -2,40 +2,63 @@
 
 module Documents
   class SettingsForm < Components::Base
-    attr_reader :model
+    include Phlex::Rails::Helpers::FormWith
+    attr_reader :model, :params
 
-    def initialize(model:, **attrs)
+    def initialize(model:, params: {}, **attrs)
       @model = model
+      @params = params
       super(**attrs)
     end
 
     def view_template(&)
-      turbo_frame_tag(dom_id(model), class: "py-4") do
-        RubyUI::Form(action: "/doc", method: :patch, data: { turbo_frame: "_top" }) do
-          slug_field
+      div(class: "flex flex-col space-y-4") do
+        turbo_frame_tag(dom_id(model)) do
+          RubyUI::Form(
+            action: document_path(model),
+            method: :patch,
+            data: { controller: "autosubmit" }
+          ) do
+            form_errors
+            slug_field
+          end
         end
       end
     end
 
     private
 
+    def form_errors
+      if model.errors.any?
+        Alert(variant: :warning) do
+          i(class: "ri-error-warning-line size-5")
+          AlertTitle { "Errors" }
+          AlertDescription do
+            model.errors.full_messages.each do |error|
+              ul do
+                li { plain error }
+              end
+            end
+          end
+        end
+      end
+    end
+
     def slug_field
       FormField do
-        # TODO Perhaps the RubyUI::Input should take a model / attribute and handle errors itself
         invalid_class = model.errors[:slug].any? ? "border-red-500" : ""
         FormFieldLabel { plain "Slug" }
         Input(
           name: "document[slug]",
-          placeholder: "Slug",
+          placeholder: "your-slug-here",
+          autocomplete: "off",
           required: true,
-          value: model.slug,
-          class: invalid_class
+          value: params.dig(:document, :slug) || model.slug,
+          class: invalid_class,
+          data: { action: "autosubmit#submit" }
         )
-        if model.errors[:name].any?
-          model.errors[:name].each do |error|
-            FormFieldError { error }
-          end
-        end
+        # Displays HTML5 validation errors via ruby-ui--form-field-controller
+        FormFieldError()
       end
     end
   end

@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
+// Connects to data-controller="ruby-ui--form-field-controller"
 export default class extends Controller {
   static targets = ["input", "error"];
   static values = { shouldValidate: false };

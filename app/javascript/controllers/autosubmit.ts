@@ -1,14 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 import { debounce } from "./utils"
 
-// This is no longer being used (until Documents settings drawer)
+// connects to data-controller="autosubmit"
 export default class AutoSubmit extends Controller<HTMLFormElement> {
   declare delayValue: number
 
   static values = {
     delay: {
       type: Number,
-      default: 150,
+      default: 1000,
     },
   }
 

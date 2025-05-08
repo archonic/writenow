@@ -18,10 +18,16 @@ module Documents
           DialogHeader(class: "h-8 border-b border-gray-300") do
             DialogTitle do
               i(class: "ri-settings-3-line")
-                plain "Document settings"
+              plain "Document settings"
             end
           end
           SettingsForm(model:)
+          DialogFooter do
+            RubyUI::Button(variant: :destructive) do
+              i(class: "ri-delete-bin-line")
+              plain "Delete"
+            end
+          end
         end
       end
     end

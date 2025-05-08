@@ -28,19 +28,8 @@ class DocumentsController < ApplicationController
 
   # NOTE This is only for document settings
   def update
-    respond_to do |format|
-      if @document.update(update_params)
-        notice = "Document was successfully updated."
-        if @document.slug_previously_changed?
-          format.html { redirect_to edit_document_path(@document), notice: }
-        else
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, Documents::Edit.new(model: @document)) }
-          # format.turbo_stream { render turbostream: turbo_stream.replace(@document) }
-        end
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
+    @document.update(update_params)
+    render turbo_stream: turbo_stream.replace(@document, Documents::SettingsForm.new(model: @document, params:))
   end
 
   def destroy
