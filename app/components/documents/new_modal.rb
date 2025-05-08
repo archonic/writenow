@@ -21,11 +21,11 @@ module Documents
               i(class: "ri-draft-line")
               plain "Create a new document"
             end
-            Documents::NewForm(model:)
-            DialogFooter do
-              RubyUI::Button(variant: :outline, data: { action: "app--dialog#close" }) { "Cancel" }
-              RubyUI::Button(type: "submit", value: "Submit", form: dom_id(model)) { "Create" }
-            end
+          end
+          Documents::NewForm(model:)
+          DialogFooter do
+            RubyUI::Button(variant: :outline, data: { action: "app--dialog#close" }) { "Cancel" }
+            RubyUI::Button(type: "submit", value: "Submit", form: dom_id(model)) { "Create" }
           end
         end
       end

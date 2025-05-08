@@ -12,7 +12,9 @@ module App
 
     def view_template(&)
       dialog(**attrs) do
-        yield
+        div(class: "flex flex-col space-y-2") do
+          yield
+        end
         DialogClose()
       end
     end
