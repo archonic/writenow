@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Tiptap::Base < RubyUI::Base
+class Tiptap::Base < Components::Base
   def initialize(key = nil, **attrs)
     if key
       @key = key.to_sym

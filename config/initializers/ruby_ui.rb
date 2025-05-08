@@ -12,6 +12,10 @@ module Documents
   extend Phlex::Kit
 end
 
+module App
+  extend Phlex::Kit
+end
+
 # Allow using RubyUI instead RubyUi
 Rails.autoloaders.main.inflector.inflect(
   "ruby_ui" => "RubyUI"
@@ -29,7 +33,12 @@ Rails.autoloaders.main.push_dir(
   Rails.root.join("app/components/documents"), namespace: Documents
 )
 
+Rails.autoloaders.main.push_dir(
+  Rails.root.join("app/components/app"), namespace: App
+)
+
 # Allow using Namespace::ComponentName instead Components::Namespace::ComponentName
 Rails.autoloaders.main.collapse(Rails.root.join("app/components/ruby_ui/*"))
-Rails.autoloaders.main.collapse(Rails.root.join("app/components/documents/*"))
 Rails.autoloaders.main.collapse(Rails.root.join("app/components/tiptap/*"))
+Rails.autoloaders.main.collapse(Rails.root.join("app/components/documents/*"))
+Rails.autoloaders.main.collapse(Rails.root.join("app/components/app/*"))

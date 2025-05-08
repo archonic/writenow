@@ -28,8 +28,7 @@ module Documents
           name: "document[name]",
           placeholder: "Name",
           required: true,
-          class: invalid_class,
-          data: { ruby_ui__dialog_target: "autofocus" }
+          class: invalid_class
         )
         if model.errors[:name].any?
           model.errors[:name].each do |error|

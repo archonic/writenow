@@ -150,6 +150,40 @@
   }
 }
 
+/* Dialog styles */
+.app-dialog {
+  transition: opacity 150ms ease-in-out,
+    scale 150ms ease-in-out,
+    overlay 150ms allow-discrete,
+    display 150ms allow-discrete;
+  @apply transform-gpu;
+  opacity: 0;
+  &::backdrop {
+    transition: display 150ms allow-discrete,
+      overlay 150ms allow-discrete,
+      background-color 150ms;
+    @apply transform-gpu backdrop-blur-sm bg-background/80;
+  }
+
+  &[open] {
+    opacity: 1;
+  }
+
+  &[open]::backdrop {
+    @apply bg-background/50;
+  }
+}
+
+@starting-style {
+  .app-dialog[open] {
+    opacity: 0;
+
+    &::backdrop {
+      @apply bg-background/0
+    }
+  }
+}
+
 /* Editor styles */
 .tiptap.ProseMirror {
   @apply prose max-w-none p-5;

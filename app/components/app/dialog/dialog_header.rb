@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module RubyUI
-  class DialogHeader < Base
+module App
+  class DialogHeader < Components::Base
     def view_template(&)
       div(**attrs, &)
     end
