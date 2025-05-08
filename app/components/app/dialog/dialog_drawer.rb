@@ -6,7 +6,7 @@ module App
     DEFAULT_CLASSES = %w[
       app-dialog p-6 overflow-y-auto shadow-xl bg-background
       fixed
-      min-h-screen w-80
+      min-h-screen h-full w-80
       space-y-4
     ].freeze
 
@@ -19,7 +19,6 @@ module App
     def view_template(&)
       dialog(**attrs) do
         yield
-        DialogClose()
       end
     end
 

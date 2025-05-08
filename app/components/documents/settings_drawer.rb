@@ -15,18 +15,21 @@ module Documents
           i(class: "ri-settings-3-line")
         end
         DialogDrawer do
-          DialogHeader(class: "h-8 border-b border-gray-300") do
-            DialogTitle do
+          div(class: "flex flex-col space-y-4 h-full") do
+            DialogTitle(class: "h-8 border-b border-gray-300") do
               i(class: "ri-settings-3-line")
               plain "Document settings"
             end
-          end
-          SettingsForm(model:)
-          DialogFooter do
-            RubyUI::Button(variant: :destructive) do
-              i(class: "ri-delete-bin-line")
-              plain "Delete"
+            div(class: "grow") do
+              SettingsForm(model:, class: "h-full")
             end
+            DialogFooter do
+              RubyUI::Button(variant: :destructive, class: "w-full") do
+                i(class: "ri-delete-bin-line")
+                plain "Delete"
+              end
+            end
+            DialogClose()
           end
         end
       end

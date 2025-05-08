@@ -16,17 +16,16 @@ module Documents
           plain "New"
         end
         DialogModal do
-          DialogHeader do
-            DialogTitle do
-              i(class: "ri-draft-line")
-              plain "Create a new document"
-            end
+          DialogTitle do
+            i(class: "ri-draft-line")
+            plain "Create a new document"
           end
           Documents::NewForm(model:)
           DialogFooter do
             RubyUI::Button(variant: :outline, data: { action: "app--dialog#close" }) { "Cancel" }
             RubyUI::Button(type: "submit", value: "Submit", form: dom_id(model)) { "Create" }
           end
+          DialogClose()
         end
       end
     end

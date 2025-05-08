@@ -12,16 +12,14 @@ module Documents
     end
 
     def view_template(&)
-      div(class: "flex flex-col space-y-4") do
-        turbo_frame_tag(dom_id(model)) do
-          RubyUI::Form(
-            action: document_path(model),
-            method: :patch,
-            data: { controller: "autosubmit" }
-          ) do
-            form_errors
-            slug_field
-          end
+      turbo_frame_tag(dom_id(model)) do
+        RubyUI::Form(
+          action: document_path(model),
+          method: :patch,
+          data: { controller: "autosubmit" }
+        ) do
+          form_errors
+          slug_field
         end
       end
     end

@@ -15,7 +15,6 @@ module App
         div(class: "flex flex-col space-y-2") do
           yield
         end
-        DialogClose()
       end
     end
 
