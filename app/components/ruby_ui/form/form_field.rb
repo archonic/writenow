@@ -12,7 +12,8 @@ module RubyUI
       {
         data: {
           controller: "ruby-ui--form-field"
-        }
+        },
+        class: "flex flex-col space-y-2"
       }
     end
   end
