@@ -1,12 +1,12 @@
 <% content_for :title, @document.name %>
 <% content_for :left_nav do %>
-  <%= render RubyUI::Link.new(variant: :secondary, href: documents_path, class: "gap-2") do %>
+  <%= render RubyUI::Link.new(variant: :secondary, href: documents_path) do %>
     <i class="ri-arrow-left-line"></i>
     Documents
   <% end %>
 <% end %>
 <% content_for :right_nav do %>
-  <%= render RubyUI::Link.new(variant: :secondary, href: edit_document_path(@document), class: "gap-2") do %>
+  <%= render RubyUI::Link.new(variant: :secondary, href: edit_document_path(@document)) do %>
     <i class="ri-edit-line"></i>
     Edit
   <% end %>

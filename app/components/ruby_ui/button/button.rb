@@ -7,6 +7,7 @@ module RubyUI
       focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
       cursor-pointer
       disabled:pointer-events-none disabled:opacity-50
+      gap-2
     ]
 
     def initialize(type: :button, variant: :primary, size: :md, icon: false, **attrs)

@@ -1,6 +1,6 @@
 <% content_for :title, "Editing #{@document.name}" %>
 <% content_for :left_nav do %>
-  <%= render RubyUI::Link.new(variant: :secondary, href: document_path(@document), class: "gap-2") do %>
+  <%= render RubyUI::Link.new(variant: :secondary, href: document_path(@document)) do %>
     <i class="ri-arrow-left-line"></i>
     Document
   <% end %>
