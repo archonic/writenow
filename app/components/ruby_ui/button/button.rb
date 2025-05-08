@@ -2,7 +2,6 @@
 
 module RubyUI
   class Button < Base
-    # Why no pointer?
     DEFAULT_CLASSES = %w[
       whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors
       focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
@@ -55,7 +54,7 @@ module RubyUI
     end
 
     def destructive_classes
-      "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/80"
+      "bg-destructive text-white shadow-sm hover:bg-destructive/80"
     end
 
     def outline_classes
