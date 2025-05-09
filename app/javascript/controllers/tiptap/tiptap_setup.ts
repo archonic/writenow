@@ -59,6 +59,11 @@ export default class TiptapSetup {
 
     return new Editor({
       element: element,
+      editorProps: {
+        attributes: {
+          class: 'prose py-5 px-1 focus:outline-none max-w-none'
+        }
+      },
       extensions: [
         StarterKit.configure({
           document: false,

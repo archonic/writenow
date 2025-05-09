@@ -150,7 +150,7 @@
   }
 }
 
-/* Dialog styles */
+/* Dialog */
 .app-dialog {
   transition: opacity 150ms ease-in-out,
     scale 150ms ease-in-out,
@@ -184,10 +184,8 @@
   }
 }
 
-/* Editor styles */
+/* Editor */
 .tiptap.ProseMirror {
-  @apply prose max-w-none p-5;
-
   a {
     @apply underline text-blue-600 dark:text-sky-400;
   }
