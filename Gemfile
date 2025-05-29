@@ -66,7 +66,7 @@ end
 
 gem "ruby_ui", "~> 1.0", group: :development, require: false
 
-gem "phlex-rails", "~> 2.2"
+gem "phlex-rails", "~> 2.3"
 
 gem "tailwindcss-rails", "~> 4.0"
 
